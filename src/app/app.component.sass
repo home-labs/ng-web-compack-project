@@ -1,0 +1,21 @@
+app-root
+  &:host
+    display: block
+    height: 100%
+
+    ::ng-deep
+      side-panel
+        position: absolute
+        top: 0
+        bottom: 0
+        right: 0
+
+        .container
+          background-color: black
+          opacity: 0.8
+          transition: width 700ms
+          display: inline-block
+          color: white
+
+          .content
+            padding: 25px
