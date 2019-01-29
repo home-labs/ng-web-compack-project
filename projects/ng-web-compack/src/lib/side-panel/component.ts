@@ -3,7 +3,9 @@ import {
     OnInit,
     OnDestroy,
     ViewChild,
-    ElementRef
+    ElementRef,
+    Output,
+    EventEmitter
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 
@@ -17,6 +19,7 @@ import { Services } from '../services/namespace';
 })
 export class SidePanelComponent implements OnInit, OnDestroy {
 
+    private require2SlideSubscription: Subscription;
     private slideHorizontallyEventSubscription: Subscription;
 
     private _container: HTMLDivElement;
@@ -42,13 +45,21 @@ export class SidePanelComponent implements OnInit, OnDestroy {
         }
     }
 
+    @Output() require2Slide: EventEmitter<null>;
+
     constructor(
         private sidePanelService: Services.SidePanel
     ) {
-
+        this.require2Slide = new EventEmitter();
     }
 
     ngOnInit() {
+        this.require2SlideSubscription = this.sidePanelService.subscribeInSlideRequestEvent(
+            () => {
+                this.require2Slide.emit();
+            }
+        );
+
         this.slideHorizontallyEventSubscription = this.sidePanelService.subscribeInSlideHorizontallyEvent(
             () => {
                 this.toggleHorizontalSliding();
@@ -57,6 +68,7 @@ export class SidePanelComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
+        this.require2SlideSubscription.unsubscribe();
         this.slideHorizontallyEventSubscription.unsubscribe();
     }
 

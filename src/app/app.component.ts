@@ -19,6 +19,10 @@ export class AppComponent {
     }
 
     onClick() {
+        this.sidePanelService.require2Slide();
+    }
+
+    onRequire2Slide() {
         this.sidePanelService.slideHorizontally();
     }
 
