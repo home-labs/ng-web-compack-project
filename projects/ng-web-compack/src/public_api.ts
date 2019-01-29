@@ -1,7 +1,4 @@
-/*
- * Public API Surface of ng-web-compack
- */
+import * as NgWebCompack from './lib';
+export { NgWebCompack };
 
-export * from './lib/ng-web-compack.service';
-export * from './lib/ng-web-compack.component';
-export * from './lib/ng-web-compack.module';
+export { SidePanelModule } from './lib';

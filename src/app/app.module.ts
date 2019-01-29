@@ -4,13 +4,19 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import {
+    SidePanelModule
+} from 'projects/ng-web-compack/src/public_api';
+
+
 @NgModule({
-    declarations: [
-        AppComponent
-    ],
     imports: [
         BrowserModule,
-        AppRoutingModule
+        AppRoutingModule,
+        SidePanelModule
+    ],
+    declarations: [
+        AppComponent
     ],
     providers: [],
     bootstrap: [AppComponent]
