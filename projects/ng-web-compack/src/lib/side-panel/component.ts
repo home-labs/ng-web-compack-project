@@ -25,10 +25,12 @@ export class SidePanelComponent implements OnInit, OnDestroy {
     private _container: HTMLDivElement;
     private inlineStyle: CSSStyleDeclaration;
 
+    private _containerElementRef: ElementRef;
     @ViewChild('container')
-    private set container(value: ElementRef) {
+    private set container(value: any) {
         if (value) {
-            this._container = value.nativeElement;
+            this._containerElementRef = value;
+            this._container = this._containerElementRef.nativeElement;
 
             this.inlineStyle = this._container.style;
             this.inlineStyle.width = '0px';
