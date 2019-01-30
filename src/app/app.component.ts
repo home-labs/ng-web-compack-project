@@ -20,23 +20,23 @@ export class AppComponent {
         private sidePanelService: NgWebCompack.Services.SidePanel
     ) {
 
-        // this.collectionPromise = new Promise(
-        //     (accomplish: Function) => {
-        //         this._accomplish = accomplish;
-        //     }
-        // );
+        this.collectionPromise = new Promise(
+            (accomplish: Function) => {
+                this._accomplish = accomplish;
+            }
+        );
 
-        // const
-        //     interval = setInterval(
-        //         () => {
-        //             this.collection = [1];
+        const
+            interval = setInterval(
+                () => {
+                    this.collection = [1];
 
-        //             this._accomplish(this.collection);
+                    this._accomplish(this.collection);
 
-        //             clearInterval(interval);
-        //         }, 5000
+                    clearInterval(interval);
+                }, 5000
 
-        //     );
+            );
     }
 
     onClick() {
