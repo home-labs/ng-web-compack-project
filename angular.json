@@ -145,6 +145,11 @@
           "options": {
             "tsConfig": "projects/ng-web-compack/tsconfig.lib.json",
             "project": "projects/ng-web-compack/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/ng-web-compack/ng-package.prod.json"
+            }
           }
         },
         "test": {
