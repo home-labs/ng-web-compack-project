@@ -64,26 +64,31 @@ export class SidePanelComponent implements OnInit, OnDestroy {
 
     private toggleHorizontalSliding() {
         let
-            containerParent: HTMLElement,
-            containerClone,
+            containerParent: Node,
+            containerClone: HTMLElement,
             computedStyle: CSSStyleDeclaration,
             inlineStyle: CSSStyleDeclaration,
             computedWidth: string;
 
         if (this.inlineStyle.width == '0px') {
+            containerClone = this._container.cloneNode(true) as HTMLElement;
             containerParent = this._container.parentElement;
-            containerClone = this._container.cloneNode(true);
+
             computedStyle = window.getComputedStyle(containerClone);
+
             inlineStyle = containerClone.style;
             inlineStyle.visibility = "hidden";
 
-            containerParent.appendChild(containerClone);
+            if (containerParent) {
+                containerParent.appendChild(containerClone);
+                inlineStyle.width = "";
+                computedWidth = computedStyle.width;
+                containerParent.removeChild(containerClone);
+            } else {
+                computedWidth = `${window.document.documentElement.offsetWidth}px`;
+            }
 
-            inlineStyle.width = "";
-            computedWidth = computedStyle.width;
             this.inlineStyle.width = computedWidth;
-
-            containerParent.removeChild(containerClone);
         } else {
             this.inlineStyle.width = '0px';
         }
