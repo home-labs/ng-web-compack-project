@@ -64,7 +64,7 @@ export class SidePanelComponent implements OnInit, OnDestroy {
 
     private toggleHorizontalSliding() {
         let
-            containerParent: Node,
+            containerParent: HTMLElement,
             containerClone,
             computedStyle: CSSStyleDeclaration,
             inlineStyle: CSSStyleDeclaration,
