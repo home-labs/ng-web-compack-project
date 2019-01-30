@@ -25,23 +25,13 @@ export class SidePanelComponent implements OnInit, OnDestroy {
     private _container: HTMLDivElement;
     private inlineStyle: CSSStyleDeclaration;
 
-    private computedStyle: CSSStyleDeclaration;
-    private computedWidth: string;
-    private computedTransitionDuration: string;
-
     @ViewChild('container')
     private set container(value: ElementRef) {
         if (value) {
             this._container = value.nativeElement;
 
-            this.computedStyle = window.getComputedStyle(this._container);
-            this.computedWidth = this.computedStyle.width;
-            this.computedTransitionDuration = this.computedStyle.transitionDuration;
-
             this.inlineStyle = this._container.style;
-            this.inlineStyle.transitionDuration = '0ms';
             this.inlineStyle.width = '0px';
-            this.inlineStyle.transitionDuration = this.computedTransitionDuration;
         }
     }
 
@@ -73,8 +63,27 @@ export class SidePanelComponent implements OnInit, OnDestroy {
     }
 
     private toggleHorizontalSliding() {
+        let
+            containerParent: Node,
+            containerClone,
+            computedStyle: CSSStyleDeclaration,
+            inlineStyle: CSSStyleDeclaration,
+            computedWidth: string;
+
         if (this.inlineStyle.width == '0px') {
-            this.inlineStyle.width = this.computedWidth;
+            containerParent = this._container.parentElement;
+            containerClone = this._container.cloneNode(true);
+            computedStyle = window.getComputedStyle(containerClone);
+            inlineStyle = containerClone.style;
+            inlineStyle.visibility = "hidden";
+
+            containerParent.appendChild(containerClone);
+
+            inlineStyle.width = "";
+            computedWidth = computedStyle.width;
+            this.inlineStyle.width = computedWidth;
+
+            containerParent.removeChild(containerClone);
         } else {
             this.inlineStyle.width = '0px';
         }
