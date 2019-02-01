@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {
     Subscription,
+    Subject,
     Observable,
     Subscriber
 } from 'rxjs';
@@ -9,18 +10,13 @@ import {
 @Injectable()
 export class SidePanel {
 
-    private slideRequestEventSubscribable: Observable<null>;
-    private slideRequestEvent: Subscriber<null>;
+    private slideRequestEventSubscribable: Subject<null>;
 
     private slideHorizontallyEventSubscribable: Observable<null>;
     private slideHorizontallyEvent: Subscriber<null>;
 
     constructor() {
-        this.slideRequestEventSubscribable = new Observable(
-            (subscriber: Subscriber<null>) => {
-                this.slideRequestEvent = subscriber;
-            }
-        );
+        this.slideRequestEventSubscribable = new Subject();
 
         this.slideHorizontallyEventSubscribable = new Observable(
             (subscriber: Subscriber<null>) => {
@@ -34,7 +30,7 @@ export class SidePanel {
     }
 
     require2Slide() {
-        this.slideRequestEvent.next();
+        this.slideRequestEventSubscribable.next();
     }
 
     subscribeInSlideHorizontallyEvent(callback): Subscription {
@@ -42,6 +38,7 @@ export class SidePanel {
     }
 
     slideHorizontally() {
+        // controlar a quantidade de inxcritinhos para que este método abaixo seja chamado uma única vez (if calledCount == 0), quando calledCount == subscribersCount, zerar calledCount.
         this.slideHorizontallyEvent.next();
     }
 

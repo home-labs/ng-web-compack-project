@@ -35,7 +35,6 @@ export class AppComponent {
 
                     clearInterval(interval);
                 }, 5000
-
             );
     }
 

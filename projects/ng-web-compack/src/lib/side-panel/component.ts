@@ -62,7 +62,11 @@ export class SidePanelComponent implements OnInit, OnDestroy {
 
         this.slideHorizontallyEventSubscription = this.sidePanelService.subscribeInSlideHorizontallyEvent(
             () => {
-                this.toggleHorizontalSliding();
+                if (this.inlineStyle.width == '0px') {
+                    this.expand();
+                } else {
+                    this.retract();
+                }
             }
         );
     }
@@ -72,7 +76,7 @@ export class SidePanelComponent implements OnInit, OnDestroy {
         this.slideHorizontallyEventSubscription.unsubscribe();
     }
 
-    private toggleHorizontalSliding() {
+    private expand() {
         let
             containerParent: Node,
             containerClone: HTMLElement,
@@ -80,28 +84,28 @@ export class SidePanelComponent implements OnInit, OnDestroy {
             inlineStyle: CSSStyleDeclaration,
             computedWidth: string;
 
-        if (this.inlineStyle.width == '0px') {
-            containerClone = this._container.cloneNode(true) as HTMLElement;
-            containerParent = this._container.parentElement;
+        containerClone = this._container.cloneNode(true) as HTMLElement;
+        containerParent = this._container.parentElement;
 
-            computedStyle = window.getComputedStyle(containerClone);
+        computedStyle = window.getComputedStyle(containerClone);
 
-            inlineStyle = containerClone.style;
-            inlineStyle.visibility = "hidden";
+        inlineStyle = containerClone.style;
+        inlineStyle.visibility = "hidden";
 
-            if (containerParent) {
-                containerParent.appendChild(containerClone);
-                inlineStyle.width = "";
-                computedWidth = computedStyle.width;
-                containerParent.removeChild(containerClone);
-            } else {
-                computedWidth = `${window.document.documentElement.offsetWidth}px`;
-            }
-
-            this.inlineStyle.width = computedWidth;
+        if (containerParent) {
+            containerParent.appendChild(containerClone);
+            inlineStyle.width = "";
+            computedWidth = computedStyle.width;
+            containerParent.removeChild(containerClone);
         } else {
-            this.inlineStyle.width = '0px';
+            computedWidth = `${window.document.documentElement.offsetWidth}px`;
         }
+
+        this.inlineStyle.width = computedWidth;
+    }
+
+    private retract() {
+        this.inlineStyle.width = '0px';
     }
 
 }
