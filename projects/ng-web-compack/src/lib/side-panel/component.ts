@@ -7,7 +7,9 @@ import {
     Output,
     EventEmitter
 } from '@angular/core';
-import { Subscription } from 'rxjs';
+import {
+    Subscription
+} from 'rxjs';
 
 import { Services } from '../services/namespace';
 
@@ -51,6 +53,12 @@ export class SidePanelComponent implements OnInit, OnDestroy {
                 this.require2Slide.emit();
             }
         );
+
+        // this.sidePanelService.subscribeInSlideRequestEvent(
+        //     () => {
+        //         console.log('called only here');
+        //     }
+        // );
 
         this.slideHorizontallyEventSubscription = this.sidePanelService.subscribeInSlideHorizontallyEvent(
             () => {

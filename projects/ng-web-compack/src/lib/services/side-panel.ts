@@ -1,35 +1,48 @@
 import { Injectable } from '@angular/core';
 import {
-    Subject,
-    Subscription
+    Subscription,
+    Observable,
+    Subscriber
 } from 'rxjs';
 
 
 @Injectable()
 export class SidePanel {
 
-    private slideRequestEventSubscription: Subject<null>;
-    private slideHorizontallyEventSubscription: Subject<null>;
+    private slideRequestEventSubscribable: Observable<null>;
+    private slideRequestEvent: Subscriber<null>;
+
+    private slideHorizontallyEventSubscribable: Observable<null>;
+    private slideHorizontallyEvent: Subscriber<null>;
 
     constructor() {
-        this.slideRequestEventSubscription = new Subject();
-        this.slideHorizontallyEventSubscription = new Subject();
+        this.slideRequestEventSubscribable = new Observable(
+            (subscriber: Subscriber<null>) => {
+                this.slideRequestEvent = subscriber;
+            }
+        );
+
+        this.slideHorizontallyEventSubscribable = new Observable(
+            (subscriber: Subscriber<null>) => {
+                this.slideHorizontallyEvent = subscriber;
+            }
+        );
     }
 
     subscribeInSlideRequestEvent(callback): Subscription {
-        return this.slideRequestEventSubscription.subscribe(callback);
+        return this.slideRequestEventSubscribable.subscribe(callback);
     }
 
     require2Slide() {
-        this.slideRequestEventSubscription.next();
+        this.slideRequestEvent.next();
     }
 
     subscribeInSlideHorizontallyEvent(callback): Subscription {
-        return this.slideHorizontallyEventSubscription.subscribe(callback);
+        return this.slideHorizontallyEventSubscribable.subscribe(callback);
     }
 
     slideHorizontally() {
-        this.slideHorizontallyEventSubscription.next();
+        this.slideHorizontallyEvent.next();
     }
 
 }
