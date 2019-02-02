@@ -62,11 +62,7 @@ export class SidePanelComponent implements OnInit, OnDestroy {
 
         this.slideHorizontallyEventSubscription = this.sidePanelService.subscribeInSlideHorizontallyEvent(
             () => {
-                if (this.inlineStyle.width == '0px') {
-                    this.expand();
-                } else {
-                    this.retract();
-                }
+                this.horizontallySLideToggle();
             }
         );
     }
@@ -74,6 +70,14 @@ export class SidePanelComponent implements OnInit, OnDestroy {
     ngOnDestroy() {
         this.require2SlideSubscription.unsubscribe();
         this.slideHorizontallyEventSubscription.unsubscribe();
+    }
+
+    private horizontallySLideToggle() {
+        if (this.inlineStyle.width == '0px') {
+            this.expand();
+        } else {
+            this.retract();
+        }
     }
 
     private expand() {
