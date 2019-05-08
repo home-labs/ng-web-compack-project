@@ -2,8 +2,8 @@
   (click)="onClick()"
 >Click me</button>
 
-<side-panel
-  (require2Slide)="onRequire2Slide()"
+<lib-side-panel
+  (request2Sliding)="onRequest2Sliding()"
 >
   <div class="content">
     <ul *ngIf="collectionPromise | async">
@@ -12,9 +12,9 @@
       </li>
     </ul>
   </div>
-</side-panel>
+</lib-side-panel>
 
-<!-- <side-panel (require2Slide)="onRequire2Slide()">
+<!-- <lib-side-panel (request2Sliding)="onRequest2Sliding()">
   <div class="content">
     <ul>
       <li>
@@ -22,4 +22,4 @@
       </li>
     </ul>
   </div>
-</side-panel> -->
+</lib-side-panel> -->

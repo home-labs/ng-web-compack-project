@@ -39,10 +39,10 @@ export class AppComponent {
     }
 
     onClick() {
-        this.sidePanelService.require2Slide();
+        this.sidePanelService.noticeSlidingWasRequested();
     }
 
-    onRequire2Slide() {
+    onRequest2Sliding() {
         this.sidePanelService.slideHorizontally();
     }
 

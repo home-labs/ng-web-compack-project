@@ -2,29 +2,29 @@ import {
     Component,
     OnInit,
     OnDestroy,
-    ViewChild,
-    ElementRef,
+    Input,
     Output,
-    EventEmitter
+    EventEmitter,
+    ViewChild,
+    ElementRef
 } from '@angular/core';
-import {
-    Subscription
-} from 'rxjs';
 
 import { Services } from '../services/namespace';
 
 
 @Component({
-    selector: 'side-panel',
+    selector: 'lib-side-panel',
     templateUrl: './template.html',
     styleUrls: ['./style.sass']
 })
 export class SidePanelComponent implements OnInit, OnDestroy {
 
-    private require2SlideSubscription: Subscription;
-    private slideHorizontallyEventSubscription: Subscription;
+    @Input() identifier: any;
+
+    @Output() request2Sliding: EventEmitter<null>;
 
     private _container: HTMLDivElement;
+
     private inlineStyle: CSSStyleDeclaration;
 
     private _containerElementRef: ElementRef;
@@ -39,28 +39,20 @@ export class SidePanelComponent implements OnInit, OnDestroy {
         }
     }
 
-    @Output() require2Slide: EventEmitter<null>;
-
     constructor(
         private sidePanelService: Services.SidePanel
     ) {
-        this.require2Slide = new EventEmitter();
+        this.request2Sliding = new EventEmitter();
     }
 
     ngOnInit() {
-        this.require2SlideSubscription = this.sidePanelService.subscribeInSlideRequestEvent(
+        this.sidePanelService.subscribe(
             () => {
-                this.require2Slide.emit();
-            }
+                this.request2Sliding.emit();
+            }, this.identifier
         );
 
-        // this.sidePanelService.subscribeInSlideRequestEvent(
-        //     () => {
-        //         console.log('called only here');
-        //     }
-        // );
-
-        this.slideHorizontallyEventSubscription = this.sidePanelService.subscribeInSlideHorizontallyEvent(
+        this.sidePanelService.subscribeOnRequisitors2Sliding(
             () => {
                 this.horizontallySLideToggle();
             }
@@ -68,12 +60,11 @@ export class SidePanelComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        this.require2SlideSubscription.unsubscribe();
-        this.slideHorizontallyEventSubscription.unsubscribe();
+        this.sidePanelService.unsubscribe(this.identifier);
     }
 
     private horizontallySLideToggle() {
-        if (this.inlineStyle.width == '0px') {
+        if (this.inlineStyle.width === '0px') {
             this.expand();
         } else {
             this.retract();
@@ -94,11 +85,11 @@ export class SidePanelComponent implements OnInit, OnDestroy {
         computedStyle = window.getComputedStyle(containerClone);
 
         inlineStyle = containerClone.style;
-        inlineStyle.visibility = "hidden";
+        inlineStyle.visibility = 'hidden';
 
         if (containerParent) {
             containerParent.appendChild(containerClone);
-            inlineStyle.width = "";
+            inlineStyle.width = '';
             computedWidth = computedStyle.width;
             containerParent.removeChild(containerClone);
         } else {
