@@ -38,8 +38,8 @@ export class AppComponent {
             );
     }
 
-    onClick() {
-        this.sidePanelService.noticeSlidingWasRequested();
+    onClick(event: Event) {
+        this.sidePanelService.noticeSlidingWasRequested(event.target);
     }
 
     onRequest2Sliding() {

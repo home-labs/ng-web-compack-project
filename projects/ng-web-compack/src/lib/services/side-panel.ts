@@ -13,7 +13,7 @@ export class SidePanel {
 
     private execCount: number;
 
-    private subscribers: Map<any, Subject<null>>;
+    private subscribers: Map<any, Subject<EventTarget>>;
 
     private slidingRequisitorSubscribers: Map<any, Subject<null>>;
     // private slideHorizontallyEventSubscribable: Observable<null>;
@@ -45,9 +45,8 @@ export class SidePanel {
         this.subscribers.set(identifier, subscriber);
     }
 
-    // noticeSlidingWasRequested(handler: Node, identifier: any = 0) {
-    noticeSlidingWasRequested(identifier: any = 0) {
-        this.subscribers.get(identifier).next();
+    noticeSlidingWasRequested(targetNode: EventTarget, identifier: any = 0) {
+        this.subscribers.get(identifier).next(targetNode);
     }
 
     // subscribeInSlideHorizontallyEvent(callback): Subscription {

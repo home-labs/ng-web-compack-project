@@ -30,7 +30,7 @@ export class SidePanelComponent implements OnInit, OnDestroy {
 
     private targetNode: Node;
 
-    private handlers: Node[];
+    private handlers: EventTarget[];
 
     private _containerElementRef: ElementRef;
     @ViewChild('container')
@@ -46,9 +46,6 @@ export class SidePanelComponent implements OnInit, OnDestroy {
 
     @HostListener('document:click', ['$event.target'])
     onClick(targetNode: Node) {
-
-        console.log('onClick');
-        console.log(targetNode);
 
         this.targetNode = targetNode;
 
@@ -79,15 +76,17 @@ export class SidePanelComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.sidePanelService.subscribe(
-            () => {
+            (targetNode: EventTarget) => {
                 this.request2Sliding.emit();
+                this.recordHandler(targetNode);
             }, this.identifier
         );
 
         this.sidePanelService.subscribeOnRequisitors2Sliding(
             () => {
-                // está sendo chamado antes do onClick, fudendo com tudo. Mas por quê?
-                this.recordHandler();
+                // estava sendo chamado antes do onClick, f*** com tudo.
+                // this.recordHandler(this.targetNode);
+
                 this.expand();
             }
         );
@@ -97,12 +96,9 @@ export class SidePanelComponent implements OnInit, OnDestroy {
         this.sidePanelService.unsubscribe(this.identifier);
     }
 
-    private recordHandler() {
-        console.log('recording');
-        console.log(this.targetNode);
-
-        if (this.targetNode && this.handlers.indexOf(this.targetNode) === -1) {
-            this.handlers.push(this.targetNode);
+    private recordHandler(targetNode: EventTarget) {
+        if (targetNode && this.handlers.indexOf(targetNode) === -1) {
+            this.handlers.push(targetNode);
         }
     }
 
