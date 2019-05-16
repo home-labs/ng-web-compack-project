@@ -6,7 +6,8 @@ import {
     Output,
     EventEmitter,
     ViewChild,
-    ElementRef
+    ElementRef,
+    HostListener
 } from '@angular/core';
 
 import { Services } from '../services/namespace';
@@ -27,6 +28,10 @@ export class SidePanelComponent implements OnInit, OnDestroy {
 
     private inlineStyle: CSSStyleDeclaration;
 
+    private targetNode: Node;
+
+    private handlers: Node[];
+
     private _containerElementRef: ElementRef;
     @ViewChild('container')
     private set container(value: any) {
@@ -39,10 +44,37 @@ export class SidePanelComponent implements OnInit, OnDestroy {
         }
     }
 
+    @HostListener('document:click', ['$event.target'])
+    onClick(targetNode: Node) {
+
+        console.log('onClick');
+        console.log(targetNode);
+
+        this.targetNode = targetNode;
+
+        if (
+            (
+                this.handlers.length
+                && this.handlers.indexOf(targetNode) === -1
+            )
+
+            // isSameNode = ===
+            && !targetNode.isSameNode(this._containerElementRef.nativeElement)
+            && !this._containerElementRef.nativeElement.contains(targetNode)
+
+            && this.inlineStyle.width !== '0px'
+        ) {
+            this.retract();
+        }
+
+    }
+
     constructor(
         private sidePanelService: Services.SidePanel
     ) {
         this.request2Sliding = new EventEmitter();
+
+        this.handlers = [];
     }
 
     ngOnInit() {
@@ -54,7 +86,9 @@ export class SidePanelComponent implements OnInit, OnDestroy {
 
         this.sidePanelService.subscribeOnRequisitors2Sliding(
             () => {
-                this.horizontallySLideToggle();
+                // está sendo chamado antes do onClick, fudendo com tudo. Mas por quê?
+                this.recordHandler();
+                this.expand();
             }
         );
     }
@@ -63,11 +97,12 @@ export class SidePanelComponent implements OnInit, OnDestroy {
         this.sidePanelService.unsubscribe(this.identifier);
     }
 
-    private horizontallySLideToggle() {
-        if (this.inlineStyle.width === '0px') {
-            this.expand();
-        } else {
-            this.retract();
+    private recordHandler() {
+        console.log('recording');
+        console.log(this.targetNode);
+
+        if (this.targetNode && this.handlers.indexOf(this.targetNode) === -1) {
+            this.handlers.push(this.targetNode);
         }
     }
 
@@ -77,7 +112,8 @@ export class SidePanelComponent implements OnInit, OnDestroy {
             containerClone: HTMLElement,
             computedStyle: CSSStyleDeclaration,
             inlineStyle: CSSStyleDeclaration,
-            computedWidth: string;
+            computedWidth: string
+        ;
 
         containerClone = this._container.cloneNode(true) as HTMLElement;
         containerParent = this._container.parentElement;
@@ -90,7 +126,9 @@ export class SidePanelComponent implements OnInit, OnDestroy {
         if (containerParent) {
             containerParent.appendChild(containerClone);
             inlineStyle.width = '';
+
             computedWidth = computedStyle.width;
+
             containerParent.removeChild(containerClone);
         } else {
             computedWidth = `${window.document.documentElement.offsetWidth}px`;

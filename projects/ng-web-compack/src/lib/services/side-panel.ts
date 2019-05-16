@@ -45,6 +45,7 @@ export class SidePanel {
         this.subscribers.set(identifier, subscriber);
     }
 
+    // noticeSlidingWasRequested(handler: Node, identifier: any = 0) {
     noticeSlidingWasRequested(identifier: any = 0) {
         this.subscribers.get(identifier).next();
     }
