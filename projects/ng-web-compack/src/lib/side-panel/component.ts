@@ -34,7 +34,7 @@ export class SidePanelComponent {
     }
 
     @HostListener('document:click', ['$event.target'])
-    private onClick(targetNode: Node) {
+    onClick(targetNode: Node) {
 
         if (
             (
