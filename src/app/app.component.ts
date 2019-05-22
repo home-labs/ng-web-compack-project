@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {
+    Component ,
+    ViewChild
+} from '@angular/core';
 
 import {
     NgWebCompack
@@ -12,12 +15,14 @@ import {
 })
 export class AppComponent {
 
+    @ViewChild('sidePanel') sidePanel: NgWebCompack.Components.SidePanelComponent;
+
     collectionPromise:  Promise<Array<any>>;
     private collection: Array<any>;
     private _accomplish: Function;
 
     constructor(
-        private sidePanelService: NgWebCompack.Services.SidePanel
+
     ) {
 
         this.collectionPromise = new Promise(
@@ -39,11 +44,7 @@ export class AppComponent {
     }
 
     onClick(event: Event) {
-        this.sidePanelService.noticeSlidingWasRequested(event.target);
-    }
-
-    onRequest2Sliding() {
-        this.sidePanelService.slideHorizontally();
+        this.sidePanel.toggle(event.target);
     }
 
 }

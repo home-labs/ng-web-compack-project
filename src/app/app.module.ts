@@ -13,7 +13,7 @@ import {
     imports: [
         BrowserModule,
         AppRoutingModule,
-        SidePanelModule.forRoot()
+        SidePanelModule
     ],
     declarations: [
         AppComponent

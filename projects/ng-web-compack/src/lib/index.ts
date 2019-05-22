@@ -1,3 +1,4 @@
 export { SidePanelModule } from './side-panel';
 
-export { Services } from './services/namespace';
+import * as Components from './components';
+export { Components };

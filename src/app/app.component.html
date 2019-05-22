@@ -3,7 +3,7 @@
 >Click me</button>
 
 <lib-side-panel
-  (request2Sliding)="onRequest2Sliding()"
+  #sidePanel
 >
   <div class="content">
     <ul *ngIf="collectionPromise | async">
@@ -14,7 +14,7 @@
   </div>
 </lib-side-panel>
 
-<!-- <lib-side-panel (request2Sliding)="onRequest2Sliding()">
+<!-- <lib-side-panel>
   <div class="content">
     <ul>
       <li>

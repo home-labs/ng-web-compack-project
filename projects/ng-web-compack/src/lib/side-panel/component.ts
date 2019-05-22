@@ -1,16 +1,9 @@
 import {
     Component,
-    OnInit,
-    OnDestroy,
-    Input,
-    Output,
-    EventEmitter,
     ViewChild,
     ElementRef,
     HostListener
 } from '@angular/core';
-
-import { Services } from '../services/namespace';
 
 
 @Component({
@@ -18,17 +11,13 @@ import { Services } from '../services/namespace';
     templateUrl: './template.html',
     styleUrls: ['./style.sass']
 })
-export class SidePanelComponent implements OnInit, OnDestroy {
+export class SidePanelComponent {
 
-    @Input() identifier: any;
-
-    @Output() request2Sliding: EventEmitter<null>;
+    private retracted: Boolean;
 
     private _container: HTMLDivElement;
 
     private inlineStyle: CSSStyleDeclaration;
-
-    private targetNode: Node;
 
     private handlers: EventTarget[];
 
@@ -45,9 +34,7 @@ export class SidePanelComponent implements OnInit, OnDestroy {
     }
 
     @HostListener('document:click', ['$event.target'])
-    onClick(targetNode: Node) {
-
-        this.targetNode = targetNode;
+    private onClick(targetNode: Node) {
 
         if (
             (
@@ -62,38 +49,27 @@ export class SidePanelComponent implements OnInit, OnDestroy {
             && this.inlineStyle.width !== '0px'
         ) {
             this.retract();
+            this.retracted = true;
         }
 
     }
 
-    constructor(
-        private sidePanelService: Services.SidePanel
-    ) {
-        this.request2Sliding = new EventEmitter();
+    constructor() {
+        this.retracted = true;
 
         this.handlers = [];
     }
 
-    ngOnInit() {
-        this.sidePanelService.subscribe(
-            (targetNode: EventTarget) => {
-                this.request2Sliding.emit();
-                this.recordHandler(targetNode);
-            }, this.identifier
-        );
+    toggle(targetNode: EventTarget) {
+        this.recordHandler(targetNode);
 
-        this.sidePanelService.subscribeOnRequisitors2Sliding(
-            () => {
-                // estava sendo chamado antes do onClick, f*** com tudo.
-                // this.recordHandler(this.targetNode);
+        if (this.retracted) {
+            this.expand();
+        } else {
+            this.retract();
+        }
 
-                this.expand();
-            }
-        );
-    }
-
-    ngOnDestroy() {
-        this.sidePanelService.unsubscribe(this.identifier);
+        this.retracted = !this.retracted;
     }
 
     private recordHandler(targetNode: EventTarget) {

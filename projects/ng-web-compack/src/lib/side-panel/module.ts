@@ -1,10 +1,7 @@
 import {
-    NgModule,
-    ModuleWithProviders
+    NgModule
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { Services } from '../services/namespace';
 
 import { SidePanelComponent } from './component';
 
@@ -20,15 +17,4 @@ import { SidePanelComponent } from './component';
         SidePanelComponent
     ]
 })
-export class SidePanelModule {
-
-    static forRoot(): ModuleWithProviders {
-        return {
-            ngModule: SidePanelModule,
-            providers: [
-                Services.SidePanel
-            ]
-        };
-    }
-
-}
+export class SidePanelModule { }
