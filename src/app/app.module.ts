@@ -4,9 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import {
-    SidePanelModule
-} from 'projects/ng-web-compack/src/public_api';
+import { SidePanelModule } from 'ng-web-compack/side-panel';
+// import { SidePanelModule } from 'projects/ng-web-compack/src/public-api';
 
 
 @NgModule({

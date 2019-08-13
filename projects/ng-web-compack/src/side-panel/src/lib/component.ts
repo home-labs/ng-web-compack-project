@@ -22,7 +22,8 @@ export class SidePanelComponent {
     private handlers: EventTarget[];
 
     private _containerElementRef: ElementRef;
-    @ViewChild('container')
+    // ver se não dará problema com versões anteriores do Angular
+    @ViewChild('container', {static: false})
     private set container(value: any) {
         if (value) {
             this._containerElementRef = value;
@@ -60,7 +61,7 @@ export class SidePanelComponent {
         this.handlers = [];
     }
 
-    toggle(targetNode: EventTarget) {
+    toggleThrough(targetNode: EventTarget) {
         this.recordHandler(targetNode);
 
         if (this.retracted) {

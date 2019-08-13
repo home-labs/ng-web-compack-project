@@ -1,0 +1,5 @@
+{
+  "lib": {
+    "entryFile": "../src/side-panel/src/public-api.ts"
+  }
+}

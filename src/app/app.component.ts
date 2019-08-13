@@ -3,9 +3,8 @@ import {
     ViewChild
 } from '@angular/core';
 
-import {
-    NgWebCompack
-} from 'projects/ng-web-compack/src/public_api';
+// import { NgWebCompack } from 'projects/ng-web-compack/src/public-api';
+import { NgWebCompack } from 'ng-web-compack';
 
 
 @Component({
@@ -15,7 +14,8 @@ import {
 })
 export class AppComponent {
 
-    @ViewChild('sidePanel') sidePanel: NgWebCompack.Components.SidePanelComponent;
+    // @ViewChild('sidePanel') sidePanel: NgWebCompack.Components.SidePanelComponent;
+    @ViewChild('sidePanel', { static: false }) sidePanel: NgWebCompack.SidePanel.SidePanelComponent;
 
     collectionPromise:  Promise<Array<any>>;
     private collection: Array<any>;
@@ -44,7 +44,7 @@ export class AppComponent {
     }
 
     onClick(event: Event) {
-        this.sidePanel.toggle(event.target);
+        this.sidePanel.toggleThrough(event.target);
     }
 
 }
