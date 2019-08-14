@@ -1,1 +1,0 @@
-export { SidePanelComponent } from './component';

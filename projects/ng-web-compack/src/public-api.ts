@@ -1,4 +1,3 @@
-import * as NgWebCompack from '.';
-export { NgWebCompack };
+export { NgWebCompack } from './namespace';
 
 export * from './side-panel/src/public-api';

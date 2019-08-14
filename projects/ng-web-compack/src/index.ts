@@ -1,1 +1,1 @@
-export { SidePanel } from './side-panel/src/public-api';
+export { SidePanel } from './side-panel/src/namespace';

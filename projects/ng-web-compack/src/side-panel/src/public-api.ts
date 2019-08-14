@@ -1,4 +1,3 @@
-import * as SidePanel from './lib';
-export { SidePanel };
+export { SidePanel } from './namespace';
 
 export * from './lib/module';
