@@ -23,7 +23,8 @@ export class SidePanelComponent {
 
     private _containerElementRef: ElementRef;
     // ver se não dará problema com versões anteriores do Angular
-    @ViewChild('container', {static: false})
+    // @ViewChild('container')
+    @ViewChild('container', { static: false })
     private set container(value: any) {
         if (value) {
             this._containerElementRef = value;
