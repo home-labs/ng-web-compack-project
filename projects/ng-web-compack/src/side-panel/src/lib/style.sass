@@ -2,3 +2,14 @@ lib-side-panel
   &:host
     white-space: nowrap
     overflow-x: hidden
+
+    .mask
+      position: absolute
+      left: 0
+      right: 0
+      top: 0
+      bottom: 0
+      z-index: 1
+
+    .container
+      z-index: 2

@@ -8,3 +8,9 @@
   ></ng-content>
 
 </div>
+
+<div
+  *ngIf="!retracted"
+  class="mask"
+  (click)="recall()"
+></div>

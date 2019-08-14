@@ -19,12 +19,14 @@ export class SidePanelComponent {
 
     private inlineStyle: CSSStyleDeclaration;
 
-    private handlers: EventTarget[];
+    private eventTargets: EventTarget[];
+
+    private eventTarget: EventTarget;
 
     private _containerElementRef: ElementRef;
     // ver se não dará problema com versões anteriores do Angular
     // @ViewChild('container')
-    @ViewChild('container', { static: false })
+    @ViewChild('container', { static: true })
     private set container(value: any) {
         if (value) {
             this._containerElementRef = value;
@@ -36,45 +38,48 @@ export class SidePanelComponent {
     }
 
     @HostListener('document:click', ['$event.target'])
-    onClick(targetNode: EventTarget) {
+    private onClick(eventTarget: EventTarget) {
 
-        // colocar uma camada ao lado da side bar, de forma que ao ser clicado nela a sidebar seja exclusivamente retraída
+        this.eventTarget = eventTarget;
+
+        // console.log('onClick');
+        console.log(eventTarget);
+        // console.log('-----------');
+
         if (
             (
-                this.handlers.length
-                && this.handlers.indexOf(targetNode) === -1
+                this.eventTargets.length
+                && !this.eventTargets.includes(eventTarget)
             )
 
             // isSameNode = ===
-            && !(targetNode as Node).isSameNode(this._containerElementRef.nativeElement)
-            && !this._containerElementRef.nativeElement.contains(targetNode)
-
+            && !(eventTarget as Node).isSameNode(this._containerElementRef.nativeElement)
+            && !this._containerElementRef.nativeElement.contains(eventTarget)
             && this.inlineStyle.width !== '0px'
         ) {
             this.recall();
-            this.retracted = true;
         }
 
     }
 
     constructor() {
         this.retracted = true;
-
-        this.handlers = [];
+        this.eventTargets = [];
     }
 
-    toggleThrough(targetNode: EventTarget) {
-        this.recordHandler(targetNode);
+    // toggleThrough(eventTarget: EventTarget) {
+    toggleThrough() {
+
+        // this.recordHandler(this.eventTarget);
 
         if (this.retracted) {
             this.release();
         } else {
             this.recall();
         }
-
-        this.retracted = !this.retracted;
     }
 
+    // é chamado antes de HostListener e este é o problema
     release() {
         let
             containerParent: Node,
@@ -83,6 +88,8 @@ export class SidePanelComponent {
             inlineStyle: CSSStyleDeclaration,
             computedWidth: string
         ;
+
+        // this.recordHandler();
 
         containerClone = this._container.cloneNode(true) as HTMLElement;
         containerParent = this._container.parentElement;
@@ -104,16 +111,28 @@ export class SidePanelComponent {
         }
 
         this.inlineStyle.width = computedWidth;
+
+        this.retracted = false;
     }
 
     recall() {
         this.inlineStyle.width = '0px';
+        this.retracted = true;
     }
 
-    private recordHandler(targetNode: EventTarget) {
-        if (targetNode && !this.handlers.includes(targetNode)) {
-            this.handlers.push(targetNode);
+    // private recordHandler(eventTarget: EventTarget) {
+    private recordHandler() {
+
+        if (
+            this.eventTarget
+            && !this.eventTargets.includes(this.eventTarget)
+            // também pode ser testado se eventTarget não é a máscara
+        ) {
+            // this.eventTargets.push(eventTarget);
+            this.eventTargets.push(this.eventTarget);
         }
+
+        console.log(this.eventTargets);
     }
 
 }

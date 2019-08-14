@@ -1,10 +1,10 @@
 import {
-    Component ,
+    Component,
     ViewChild
 } from '@angular/core';
 
-// import { NgWebCompack } from 'projects/ng-web-compack/src/public-api';
-import { NgWebCompack } from 'ng-web-compack';
+import { NgWebCompack } from 'projects/ng-web-compack/src/public-api';
+// import { NgWebCompack } from 'ng-web-compack';
 
 
 @Component({
@@ -14,7 +14,7 @@ import { NgWebCompack } from 'ng-web-compack';
 })
 export class AppComponent {
 
-    // @ViewChild('sidePanel') sidePanel: NgWebCompack.Components.SidePanelComponent;
+    // @ViewChild('sidePanel') sidePanel: NgWebCompack.SidePanel.SidePanelComponent;
     @ViewChild('sidePanel', { static: false }) sidePanel: NgWebCompack.SidePanel.SidePanelComponent;
 
     collectionPromise:  Promise<Array<any>>;
@@ -43,8 +43,9 @@ export class AppComponent {
             );
     }
 
-    onClick(event: Event) {
-        this.sidePanel.toggleThrough(event.target);
+    onClick(event: EventTarget) {
+        // this.sidePanel.toggleThrough(event.target);
+        this.sidePanel.toggleThrough();
     }
 
 }
