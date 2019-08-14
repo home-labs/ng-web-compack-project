@@ -64,10 +64,10 @@ export class SidePanelComponent {
 
     constructor() {
         this.retracted = true;
-        this.eventTargets = [];
+        // this.eventTargets = [];
     }
 
-    toggleThrough() {
+    toggle() {
         if (this.retracted) {
             this.release();
         } else {
