@@ -1,3 +1,3 @@
 export { SidePanel } from './namespace';
 
-export * from './lib/module';
+export { SidePanelModule } from './lib/module';
