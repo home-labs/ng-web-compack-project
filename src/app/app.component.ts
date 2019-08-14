@@ -3,14 +3,14 @@ import {
     ViewChild
 } from '@angular/core';
 
-import { NgWebCompack } from 'projects/ng-web-compack/src/public-api';
-// import { NgWebCompack } from 'ng-web-compack';
+// import { NgWebCompack } from 'projects/ng-web-compack/src/public-api';
+import { NgWebCompack } from 'ng-web-compack';
 
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
-    styleUrls: ['./app.component.sass']
+    styleUrls: ['./app.component.styl']
 })
 export class AppComponent {
 
@@ -39,7 +39,7 @@ export class AppComponent {
                     this._accomplish(this.collection);
 
                     clearInterval(interval);
-                }, 5000
+                }, 3000
             );
     }
 

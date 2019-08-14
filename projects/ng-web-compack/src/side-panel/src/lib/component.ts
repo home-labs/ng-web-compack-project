@@ -9,11 +9,11 @@ import {
 @Component({
     selector: 'lib-side-panel',
     templateUrl: './template.html',
-    styleUrls: ['./style.sass']
+    styleUrls: ['./style.styl']
 })
 export class SidePanelComponent {
 
-    private retracted: Boolean;
+    retracted: Boolean;
 
     private _container: HTMLDivElement;
 
