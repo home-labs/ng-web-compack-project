@@ -35,8 +35,9 @@ export class SidePanelComponent {
     }
 
     @HostListener('document:click', ['$event.target'])
-    onClick(targetNode: Node) {
+    onClick(targetNode: EventTarget) {
 
+        // colocar uma camada ao lado da side bar, de forma que ao ser clicado nela a sidebar seja exclusivamente retraída
         if (
             (
                 this.handlers.length
@@ -44,12 +45,12 @@ export class SidePanelComponent {
             )
 
             // isSameNode = ===
-            && !targetNode.isSameNode(this._containerElementRef.nativeElement)
+            && !(targetNode as Node).isSameNode(this._containerElementRef.nativeElement)
             && !this._containerElementRef.nativeElement.contains(targetNode)
 
             && this.inlineStyle.width !== '0px'
         ) {
-            this.retract();
+            this.recall();
             this.retracted = true;
         }
 
@@ -65,21 +66,15 @@ export class SidePanelComponent {
         this.recordHandler(targetNode);
 
         if (this.retracted) {
-            this.expand();
+            this.release();
         } else {
-            this.retract();
+            this.recall();
         }
 
         this.retracted = !this.retracted;
     }
 
-    private recordHandler(targetNode: EventTarget) {
-        if (targetNode && this.handlers.indexOf(targetNode) === -1) {
-            this.handlers.push(targetNode);
-        }
-    }
-
-    private expand() {
+    release() {
         let
             containerParent: Node,
             containerClone: HTMLElement,
@@ -110,8 +105,14 @@ export class SidePanelComponent {
         this.inlineStyle.width = computedWidth;
     }
 
-    private retract() {
+    recall() {
         this.inlineStyle.width = '0px';
+    }
+
+    private recordHandler(targetNode: EventTarget) {
+        if (targetNode && !this.handlers.includes(targetNode)) {
+            this.handlers.push(targetNode);
+        }
     }
 
 }
