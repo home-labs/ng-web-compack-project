@@ -1,8 +1,8 @@
 import {
     Component,
     ViewChild,
-    ElementRef,
-    HostListener
+    // HostListener,
+    ElementRef
 } from '@angular/core';
 
 
@@ -19,9 +19,9 @@ export class SidePanelComponent {
 
     private inlineStyle: CSSStyleDeclaration;
 
-    private eventTargets: EventTarget[];
+    // private eventTarget: EventTarget;
 
-    private eventTarget: EventTarget;
+    // private eventTargets: EventTarget[];
 
     private _containerElementRef: ElementRef;
     // ver se não dará problema com versões anteriores do Angular
@@ -37,41 +37,37 @@ export class SidePanelComponent {
         }
     }
 
-    @HostListener('document:click', ['$event.target'])
-    private onClick(eventTarget: EventTarget) {
+    // @HostListener('document:click', ['$event.target'])
+    // private onClick(eventTarget: EventTarget) {
 
-        this.eventTarget = eventTarget;
+    //     this.eventTarget = eventTarget;
 
-        // console.log('onClick');
-        console.log(eventTarget);
-        // console.log('-----------');
+    //     console.log('onClick');
+    //     console.log(eventTarget);
+    //     console.log('------------');
 
-        if (
-            (
-                this.eventTargets.length
-                && !this.eventTargets.includes(eventTarget)
-            )
+    //     if (
+    //         (
+    //             this.eventTargets.length
+    //             && !this.eventTargets.includes(eventTarget)
+    //         )
 
-            // isSameNode = ===
-            && !(eventTarget as Node).isSameNode(this._containerElementRef.nativeElement)
-            && !this._containerElementRef.nativeElement.contains(eventTarget)
-            && this.inlineStyle.width !== '0px'
-        ) {
-            this.recall();
-        }
+    //         // isSameNode = ===
+    //         && !(eventTarget as Node).isSameNode(this._containerElementRef.nativeElement)
+    //         && !this._containerElementRef.nativeElement.contains(eventTarget)
+    //         && this.inlineStyle.width !== '0px'
+    //     ) {
+    //         this.recall();
+    //     }
 
-    }
+    // }
 
     constructor() {
         this.retracted = true;
         this.eventTargets = [];
     }
 
-    // toggleThrough(eventTarget: EventTarget) {
     toggleThrough() {
-
-        // this.recordHandler(this.eventTarget);
-
         if (this.retracted) {
             this.release();
         } else {
@@ -88,8 +84,6 @@ export class SidePanelComponent {
             inlineStyle: CSSStyleDeclaration,
             computedWidth: string
         ;
-
-        // this.recordHandler();
 
         containerClone = this._container.cloneNode(true) as HTMLElement;
         containerParent = this._container.parentElement;
@@ -120,19 +114,17 @@ export class SidePanelComponent {
         this.retracted = true;
     }
 
-    // private recordHandler(eventTarget: EventTarget) {
-    private recordHandler() {
+    // private recordHandler() {
 
-        if (
-            this.eventTarget
-            && !this.eventTargets.includes(this.eventTarget)
-            // também pode ser testado se eventTarget não é a máscara
-        ) {
-            // this.eventTargets.push(eventTarget);
-            this.eventTargets.push(this.eventTarget);
-        }
+    //     if (
+    //         this.eventTarget
+    //         && !this.eventTargets.includes(this.eventTarget)
+    //         // também pode ser testado se eventTarget não é a máscara
+    //     ) {
+    //         this.eventTargets.push(this.eventTarget);
+    //     }
 
-        console.log(this.eventTargets);
-    }
+    //     // console.log(this.eventTargets);
+    // }
 
 }

@@ -44,7 +44,6 @@ export class AppComponent {
     }
 
     onClick(event: EventTarget) {
-        // this.sidePanel.toggleThrough(event.target);
         this.sidePanel.toggleThrough();
     }
 
