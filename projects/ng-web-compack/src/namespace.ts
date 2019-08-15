@@ -1,2 +1,2 @@
-import * as NgWebCompack from './module-index';
+import * as NgWebCompack from './index';
 export { NgWebCompack };

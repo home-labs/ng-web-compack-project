@@ -1,2 +1,2 @@
-import * as SidePanel from './module-index';
+import * as SidePanel from './index';
 export { SidePanel };

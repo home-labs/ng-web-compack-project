@@ -17,6 +17,7 @@ import { SidePanel } from 'ng-web-compack/side-panel';
 export class AppComponent {
 
     // @ViewChild('sidePanel') sidePanel: SidePanel.SidePanelComponent;
+    // @ViewChild('sidePanel', { static: false }) sidePanel: NgWebCompack.SidePanel.SidePanelComponent;
     @ViewChild('sidePanel', { static: false }) sidePanel: SidePanel.SidePanelComponent;
 
     collectionPromise:  Promise<any[]>;

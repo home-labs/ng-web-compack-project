@@ -22,8 +22,8 @@
       "ng-web-compack": [
         "dist/ng-web-compack"
       ],
-      "ng-web-compack/side-panel": [
-        "dist/ng-web-compack/side-panel"
+      "ng-web-compack/*": [
+        "dist/ng-web-compack/*"
       ]
     }
   }
