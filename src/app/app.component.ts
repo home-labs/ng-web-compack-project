@@ -19,8 +19,8 @@ export class AppComponent {
     // @ViewChild('sidePanel') sidePanel: SidePanel.SidePanelComponent;
     @ViewChild('sidePanel', { static: false }) sidePanel: SidePanel.SidePanelComponent;
 
-    collectionPromise:  Promise<Array<any>>;
-    private collection: Array<any>;
+    collectionPromise:  Promise<any[]>;
+    private collection: any[];
     private _accomplish: Function;
 
     constructor(
@@ -28,7 +28,7 @@ export class AppComponent {
     ) {
 
         this.collectionPromise = new Promise(
-            (accomplish: Function) => {
+            (accomplish: () => void) => {
                 this._accomplish = accomplish;
             }
         );
