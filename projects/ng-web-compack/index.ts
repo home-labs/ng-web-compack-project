@@ -1,1 +1,1 @@
-export { NgWebCompack } from './namespace';
+export { SidePanel } from './side-panel/index';

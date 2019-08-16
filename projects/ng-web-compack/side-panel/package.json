@@ -1,5 +1,5 @@
 {
-  "name": "ng-web-compack_side-panel",
+  "name": "side-panel",
   "version": "1.0.0-rc.1",
   "peerDependencies": {
     "rxjs": ">= 5",

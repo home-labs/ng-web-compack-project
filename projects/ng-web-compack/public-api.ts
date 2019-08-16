@@ -1,1 +1,1 @@
-export { SidePanel } from './side-panel/index';
+export * from './namespace';
