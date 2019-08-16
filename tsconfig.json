@@ -19,7 +19,12 @@
       "dom"
     ],
     "paths": {
-
+      "ng-web-compack": [
+        "dist/ng-web-compack"
+      ],
+      "ng-web-compack/*": [
+        "dist/ng-web-compack/*"
+      ]
     }
   }
 }
