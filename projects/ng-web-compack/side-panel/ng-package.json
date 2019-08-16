@@ -1,6 +1,4 @@
 {
-  "$schema": "../../../node_modules/ng-packagr/ng-package.schema.json",
-  "dest": "../../../dist/ng-web-compack/side-pane",
   "lib": {
     "entryFile": "index.ts"
   }

@@ -1,1 +1,3 @@
-export * from './namespace';
+// export { SidePanel } from './side-panel/public-api';
+
+export { };
