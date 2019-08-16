@@ -1,5 +1,7 @@
 {
+  "$schema": "../../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../../dist/ng-web-compack/side-panel",
   "lib": {
-    "entryFile": "../src/side-panel/src/public-api.ts"
+    "entryFile": "index.ts"
   }
 }

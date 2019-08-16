@@ -136,7 +136,7 @@
     },
     "ng-web-compack": {
       "root": "projects/ng-web-compack",
-      "sourceRoot": "projects/ng-web-compack/src",
+      "sourceRoot": "projects/ng-web-compack",
       "projectType": "library",
       "prefix": "lib",
       "architect": {

@@ -1,0 +1,1 @@
+export { NgWebCompack } from './namespace';
