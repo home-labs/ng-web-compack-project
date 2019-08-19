@@ -2,7 +2,6 @@ import {
     Component,
     ViewChild,
     HostListener,
-    Input,
     ElementRef,
     OnInit
 } from '@angular/core';
@@ -15,15 +14,13 @@ import {
 })
 export class SidePanelComponent implements OnInit {
 
-    @Input() private triggerElements: Element[];
+    private triggerElements: EventTarget[];
 
-    @Input() private retracted: Boolean;
+    private retracted: Boolean;
 
     private _container: HTMLDivElement;
 
     private inlineStyle: CSSStyleDeclaration;
-
-    // private eventTarget: EventTarget;
 
     private _containerElementRef: ElementRef;
     @ViewChild('container', { static: true })
@@ -37,28 +34,37 @@ export class SidePanelComponent implements OnInit {
         }
     }
 
-    @HostListener('document:click', ['$event.target'])
-    onClick(eventTarget: EventTarget) {
+    @HostListener('document:click', ['$event'])
+    onHostClick(event: Event) {
 
         if (
-            !this._containerElementRef.nativeElement.contains(eventTarget)
+            (
+                this.triggerElements.length
+                && !this.triggerElements.includes(event.target)
+            )
+
+            && !this._containerElementRef.nativeElement.contains(event.target)
             && !this.retracted
-            && !this.triggerElements.includes(eventTarget as Element)
+            && !this.triggerElements.includes(event.target)
         ) {
             this.recall();
         }
 
+        if (!this.retracted) {
+            this.recordReleaseTriggerElement(event.target);
+        }
+
     }
 
-    constructor() {
+    constructor(
+
+    ) {
         this.retracted = true;
         this.triggerElements = [];
     }
 
     ngOnInit() {
-        if (!this.triggerElements.length) {
-            throw new Error(`The input property "triggerElements" was not defined.`);
-        }
+
     }
 
     toggle() {
@@ -69,7 +75,6 @@ export class SidePanelComponent implements OnInit {
         }
     }
 
-    // em relação a gravar por aqui o eventTarget em um array, o proeblema é que aqui é chamado antes de HostListener, isto é um problema porque se for dado um click fora de um elemento trigger, o evento disparado guardado em HostListener guardará na propriedade eventTarget este elemento que disparou o evento do tipo click, e quando o método release for chamado ele terá como referência um elemento já obsoleto (e poderá ser um elemento não trigger) guardado em eventTarget porque o evento em HostListener disparado ainda não terá sido chamado, desta vez por um elemento trigger.
     private release() {
         let
             containerParent: Node,
@@ -106,6 +111,12 @@ export class SidePanelComponent implements OnInit {
     private recall() {
         this.inlineStyle.width = '0px';
         this.retracted = true;
+    }
+
+    private recordReleaseTriggerElement(eventTarget: EventTarget) {
+        if (eventTarget && !this.triggerElements.includes(eventTarget)) {
+            this.triggerElements.push(eventTarget);
+        }
     }
 
 }

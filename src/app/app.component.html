@@ -1,11 +1,9 @@
 <button
-  #triggerButton
   (click)="onClick()"
 >Click me</button>
 
 <lib-side-panel
   #sidePanel
-  [triggerElements]="[triggerButton]"
 >
 
   <div class="content">
@@ -20,7 +18,6 @@
 
 <!-- <lib-side-panel
   #sidePanel
-  [triggerElements]="[triggerButton]"
 >
 
   <div class="content">
