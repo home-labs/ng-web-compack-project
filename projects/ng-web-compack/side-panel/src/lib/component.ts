@@ -1,8 +1,10 @@
 import {
     Component,
     ViewChild,
-    // HostListener,
-    ElementRef
+    HostListener,
+    Input,
+    ElementRef,
+    OnInit
 } from '@angular/core';
 
 
@@ -11,9 +13,11 @@ import {
     templateUrl: './template.html',
     styleUrls: ['./style.styl']
 })
-export class SidePanelComponent {
+export class SidePanelComponent implements OnInit {
 
-    retracted: Boolean;
+    @Input() private triggerElements: Element[];
+
+    @Input() private retracted: Boolean;
 
     private _container: HTMLDivElement;
 
@@ -21,11 +25,7 @@ export class SidePanelComponent {
 
     // private eventTarget: EventTarget;
 
-    // private eventTargets: EventTarget[];
-
     private _containerElementRef: ElementRef;
-    // ver se não dará problema com versões anteriores do Angular
-    // @ViewChild('container')
     @ViewChild('container', { static: true })
     private set container(value: any) {
         if (value) {
@@ -37,34 +37,28 @@ export class SidePanelComponent {
         }
     }
 
-    // @HostListener('document:click', ['$event.target'])
-    // private onClick(eventTarget: EventTarget) {
+    @HostListener('document:click', ['$event.target'])
+    onClick(eventTarget: EventTarget) {
 
-    //     this.eventTarget = eventTarget;
+        if (
+            !this._containerElementRef.nativeElement.contains(eventTarget)
+            && !this.retracted
+            && !this.triggerElements.includes(eventTarget as Element)
+        ) {
+            this.recall();
+        }
 
-    //     console.log('onClick');
-    //     console.log(eventTarget);
-    //     console.log('------------');
-
-    //     if (
-    //         (
-    //             this.eventTargets.length
-    //             && !this.eventTargets.includes(eventTarget)
-    //         )
-
-    //         // isSameNode = ===
-    //         && !(eventTarget as Node).isSameNode(this._containerElementRef.nativeElement)
-    //         && !this._containerElementRef.nativeElement.contains(eventTarget)
-    //         && this.inlineStyle.width !== '0px'
-    //     ) {
-    //         this.recall();
-    //     }
-
-    // }
+    }
 
     constructor() {
         this.retracted = true;
-        // this.eventTargets = [];
+        this.triggerElements = [];
+    }
+
+    ngOnInit() {
+        if (!this.triggerElements.length) {
+            throw new Error(`The input property "triggerElements" was not defined.`);
+        }
     }
 
     toggle() {
@@ -75,8 +69,8 @@ export class SidePanelComponent {
         }
     }
 
-    // é chamado antes de HostListener e este é o problema
-    release() {
+    // é chamado antes de HostListener, este é o problema porque se for dado fora de um elemento trigger o evento disparado guardado em HostListener guardará na propriedade eventTarget o elemento, e quando o método release for chamado ele terá como referência um elemento já obsoleto (e poderá ser um elemento não trigger) guardado em eventTarget porque o evento em HostListener disparado ainda não terá sido chamado
+    private release() {
         let
             containerParent: Node,
             containerClone: HTMLElement,
@@ -109,22 +103,9 @@ export class SidePanelComponent {
         this.retracted = false;
     }
 
-    recall() {
+    private recall() {
         this.inlineStyle.width = '0px';
         this.retracted = true;
     }
-
-    // private recordHandler() {
-
-    //     if (
-    //         this.eventTarget
-    //         && !this.eventTargets.includes(this.eventTarget)
-    //         // também pode ser testado se eventTarget não é a máscara
-    //     ) {
-    //         this.eventTargets.push(this.eventTarget);
-    //     }
-
-    //     // console.log(this.eventTargets);
-    // }
 
 }

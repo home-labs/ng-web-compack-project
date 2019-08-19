@@ -3,8 +3,6 @@ import {
     ViewChild
 } from '@angular/core';
 
-// import { NgWebCompack } from 'ng-web-compack';
-// import { SidePanel } from 'projects/ng-web-compack/src/side-panel/src/public-api';
 import { SidePanel } from 'ng-web-compack/side-panel';
 
 
@@ -15,7 +13,6 @@ import { SidePanel } from 'ng-web-compack/side-panel';
 })
 export class AppComponent {
 
-    // @ViewChild('sidePanel') sidePanel: SidePanel.SidePanelComponent;
     @ViewChild('sidePanel', { static: false }) sidePanel: SidePanel.SidePanelComponent;
 
     collectionPromise:  Promise<any[]>;
