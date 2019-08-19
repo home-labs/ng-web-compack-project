@@ -69,7 +69,7 @@ export class SidePanelComponent implements OnInit {
         }
     }
 
-    // é chamado antes de HostListener, este é o problema porque se for dado fora de um elemento trigger o evento disparado guardado em HostListener guardará na propriedade eventTarget o elemento, e quando o método release for chamado ele terá como referência um elemento já obsoleto (e poderá ser um elemento não trigger) guardado em eventTarget porque o evento em HostListener disparado ainda não terá sido chamado
+    // em relação a gravar por aqui o eventTarget em um array, o proeblema é que aqui é chamado antes de HostListener, isto é um problema porque se for dado um click fora de um elemento trigger, o evento disparado guardado em HostListener guardará na propriedade eventTarget este elemento que disparou o evento do tipo click, e quando o método release for chamado ele terá como referência um elemento já obsoleto (e poderá ser um elemento não trigger) guardado em eventTarget porque o evento em HostListener disparado ainda não terá sido chamado, desta vez por um elemento trigger.
     private release() {
         let
             containerParent: Node,
