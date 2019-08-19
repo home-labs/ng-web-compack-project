@@ -1,6 +1,6 @@
 {
   "name": "ng-web-compack",
-  "version": "2.0.0-rc.14",
+  "version": "3.0.1-rc.1",
   "peerDependencies": {
     "@angular/common": ">= 6",
     "@angular/core": ">= 6",
