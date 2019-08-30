@@ -1,1 +1,2 @@
-export { SidePanelComponent } from './lib/component';
+import * as SidePanel from './index';
+export { SidePanel };
