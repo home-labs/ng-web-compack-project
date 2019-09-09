@@ -16,7 +16,9 @@ export class AppComponent {
     @ViewChild('sidePanel', { static: false }) sidePanel: SidePanel.SidePanelComponent;
 
     collectionPromise:  Promise<any[]>;
+
     private collection: any[];
+
     private _accomplish: Function;
 
     constructor(
