@@ -18,6 +18,8 @@ export class SidePanelComponent implements OnInit {
 
     private retracted: boolean;
 
+    private sync: boolean;
+
     private _container: HTMLDivElement;
 
     private inlineStyle: CSSStyleDeclaration;
@@ -49,26 +51,41 @@ export class SidePanelComponent implements OnInit {
             this.recall();
         }
 
+        if (this.sync && !this.retracted) {
+            this.recordReleaseTriggerElement(event.target);
+        }
+
     }
 
-    constructor(
-
-    ) {
+    constructor() {
         this.retracted = true;
         this.triggerElements = [];
+        this.sync = false;
     }
 
     ngOnInit() {
 
     }
 
-    toggle(eventTarget: EventTarget) {
+    toggle() {
+        this.sync = true;
+
         if (this.retracted) {
             this.release();
         } else {
             this.recall();
         }
+    }
+
+    toggleBy(eventTarget: EventTarget) {
+        this.sync = false;
+
         this.recordReleaseTriggerElement(eventTarget);
+        if (this.retracted) {
+            this.release();
+        } else {
+            this.recall();
+        }
     }
 
     private release() {
