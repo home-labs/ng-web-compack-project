@@ -39,6 +39,10 @@ export class SidePanelComponent implements OnInit {
     @HostListener('document:click', ['$event'])
     onHostClick(event: Event) {
 
+        if (this.sync && !this.retracted) {
+            this.recordReleaseTriggerElement(event.target);
+        }
+
         if (
             (
                 this.triggerElements.length
@@ -49,10 +53,6 @@ export class SidePanelComponent implements OnInit {
             && !this.retracted
         ) {
             this.recall();
-        }
-
-        if (this.sync && !this.retracted) {
-            this.recordReleaseTriggerElement(event.target);
         }
 
     }
