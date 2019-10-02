@@ -1,9 +1,9 @@
 <button
-  (click)="onClick()"
+  (click)="onClick($event)"
 >Click me</button>
 
-<lib-side-panel
-  #sidePanel
+<lib-async-side-panel
+  #asyncSidePanel
 >
 
   <div class="content">
@@ -14,18 +14,4 @@
     </ul>
   </div>
 
-</lib-side-panel>
-
-<!-- <lib-side-panel
-  #sidePanel
->
-
-  <div class="content">
-    <ul>
-      <li>
-        Sync example works!
-      </li>
-    </ul>
-  </div>
-
-</lib-side-panel> -->
+</lib-async-side-panel>

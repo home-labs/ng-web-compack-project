@@ -8,7 +8,7 @@ import {
 
 
 @Component({
-    selector: 'lib-side-panel',
+    selector: 'lib-async-side-panel',
     templateUrl: './template.html',
     styleUrls: ['./style.styl']
 })
@@ -17,8 +17,6 @@ export class SidePanelComponent implements OnInit {
     private triggerElements: EventTarget[];
 
     private retracted: boolean;
-
-    private eventTarget: EventTarget;
 
     private _container: HTMLDivElement;
 
@@ -39,8 +37,6 @@ export class SidePanelComponent implements OnInit {
     @HostListener('document:click', ['$event'])
     onHostClick(event: Event) {
 
-        this.eventTarget = event.target;
-
         if (
             (
                 this.triggerElements.length
@@ -51,10 +47,6 @@ export class SidePanelComponent implements OnInit {
             && !this.retracted
         ) {
             this.recall();
-        }
-
-        if (!this.retracted) {
-            this.recordReleaseTriggerElement(event.target);
         }
 
     }
@@ -70,13 +62,13 @@ export class SidePanelComponent implements OnInit {
 
     }
 
-    toggle() {
-        debugger
+    toggle(eventTarget: EventTarget) {
         if (this.retracted) {
             this.release();
         } else {
             this.recall();
         }
+        this.recordReleaseTriggerElement(eventTarget);
     }
 
     private release() {
