@@ -9,9 +9,8 @@
     "experimentalDecorators": true,
     "module": "esnext",
     "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
     "importHelpers": true,
-    "target": "es5",
+    "target": "es2015",
     "typeRoots": [
       "node_modules/@types"
     ],
@@ -20,12 +19,16 @@
       "dom"
     ],
     "paths": {
-      "ng-web-compack": [
-        "dist/ng-web-compack"
+      "@rplaurindo/ng-web-compack": [
+        "dist/@rplaurindo/ng-web-compack"
       ],
-      "ng-web-compack/*": [
-        "dist/ng-web-compack/*"
+      "@rplaurindo/ng-web-compack/*": [
+        "dist/@rplaurindo/ng-web-compack/*"
       ]
     }
+  },
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true
   }
 }

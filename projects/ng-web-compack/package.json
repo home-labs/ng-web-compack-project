@@ -1,9 +1,9 @@
 {
-  "name": "ng-web-compack",
-  "version": "3.0.1-rc.1",
+  "name": "@rplaurindo/ng-web-compack",
+  "version": "1.0.0-rc.1",
   "peerDependencies": {
-    "@angular/common": ">= 6",
-    "@angular/core": ">= 6",
-    "@angular/platform-browser": ">= 6"
+    "@angular/common": ">= 6"
+    , "@angular/core": ">= 6"
+    , "@angular/platform-browser": ">= 6"
   }
 }
