@@ -3,8 +3,8 @@ import {
     ViewChild
 } from '@angular/core';
 
-// import { AsyncSidePanel } from 'ng-web-compack/async-side-panel';
-import { AsyncSidePanel } from 'projects/ng-web-compack/async-side-panel';
+import { AsyncSidePanel } from '@rplaurindo/ng-web-compack/async-side-panel';
+// import { AsyncSidePanel } from 'projects/ng-web-compack/async-side-panel';
 
 
 @Component({
