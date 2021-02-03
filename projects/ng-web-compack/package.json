@@ -1,5 +1,5 @@
 {
-  "name": "@rplaurindo/ng-web-compack",
+  "name": "@actjs.on/ng-web-compack",
   "version": "1.0.0-rc.1",
   "peerDependencies": {
     "@angular/common": ">= 6"

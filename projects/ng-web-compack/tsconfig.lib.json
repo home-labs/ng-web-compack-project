@@ -1,7 +1,7 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../dist/@rplaurindo/ng-web-compack",
+    "outDir": "../../dist/@actjs.on/ng-web-compack",
     "target": "es2015",
     "declaration": true,
     "inlineSources": true,

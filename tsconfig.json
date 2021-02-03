@@ -19,11 +19,11 @@
       "dom"
     ],
     "paths": {
-      "@rplaurindo/ng-web-compack": [
-        "dist/@rplaurindo/ng-web-compack"
+      "@actjs.on/ng-web-compack": [
+        "dist/@actjs.on/ng-web-compack"
       ],
-      "@rplaurindo/ng-web-compack/*": [
-        "dist/@rplaurindo/ng-web-compack/*"
+      "@actjs.on/ng-web-compack/*": [
+        "dist/@actjs.on/ng-web-compack/*"
       ]
     }
   },

@@ -3,7 +3,7 @@ import {
     ViewChild
 } from '@angular/core';
 
-import { AsyncSidePanel } from '@rplaurindo/ng-web-compack/async-side-panel';
+import { AsyncSidePanel } from '@actjs.on/ng-web-compack/async-side-panel';
 // import { AsyncSidePanel } from 'projects/ng-web-compack/async-side-panel';
 
 
@@ -16,7 +16,7 @@ export class AppComponent {
 
     @ViewChild('asyncSidePanel', { static: false }) asyncSidePanel: AsyncSidePanel.SidePanelComponent;
 
-    collectionPromise:  Promise<any[]>;
+    collectionPromise: Promise<any[]>;
 
     private collection: any[];
 
@@ -31,14 +31,14 @@ export class AppComponent {
         this.loaded = false;
 
         this.collectionPromise = new Promise(
-            (accomplish: () => void) => {
+            (accomplish: (value: any[]) => void) => {
                 this._accomplish = accomplish;
             }
         );
 
         setTimeout(
             () => {
-                this.collection = [1];
+                this.collection = [];
 
                 this._accomplish(this.collection);
             }, 800
@@ -50,12 +50,8 @@ export class AppComponent {
         if (this.loaded) {
             this.asyncSidePanel.toggle();
         } else {
-            setTimeout(
-                () => {
-                    this.loaded = true;
-                    this.asyncSidePanel.toggleBy(mouseEvent.target);
-                }, 800
-            );
+            this.loaded = true;
+            this.asyncSidePanel.toggleBy(mouseEvent.target);
         }
 
     }
