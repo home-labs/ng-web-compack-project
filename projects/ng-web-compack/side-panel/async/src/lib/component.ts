@@ -40,13 +40,13 @@ export class AsyncComponent implements OnInit {
     onHostClick(event: Event) {
 
         if (this.recordReleaseTriggerElement && !this.retracted) {
-            this.recordTriggerElement(event.target);
+            this.recordTriggerElement(event.target as EventTarget);
             this.recordReleaseTriggerElement = false;
         }
 
         if (
             !this._containerElementRef.nativeElement.contains(event.target as Node)
-            && !this.triggerElements.includes(event.target)
+            && !this.triggerElements.includes(event.target as EventTarget)
             && !this.retracted
         ) {
             this.recall();
@@ -58,6 +58,10 @@ export class AsyncComponent implements OnInit {
         this.retracted = true;
         this.triggerElements = [];
         this.recordReleaseTriggerElement = false;
+
+        this._container = {} as HTMLDivElement;
+        this.inlineStyle = {} as CSSStyleDeclaration;
+        this._containerElementRef = {} as ElementRef<HTMLDivElement>;
     }
 
     ngOnInit() {
@@ -84,7 +88,7 @@ export class AsyncComponent implements OnInit {
     }
 
     private release() {
-        let containerParent: Node;
+        let containerParent: Node | null;
 
         let containerClone: HTMLElement;
 
