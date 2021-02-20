@@ -12,7 +12,7 @@ import {
     templateUrl: './template.html',
     styleUrls: ['./style.styl']
 })
-export class SidePanelComponent implements OnInit {
+export class AsyncComponent implements OnInit {
 
     private triggerElements: EventTarget[];
 
