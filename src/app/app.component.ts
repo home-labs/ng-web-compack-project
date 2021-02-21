@@ -3,8 +3,8 @@ import {
     ViewChild
 } from '@angular/core';
 
-import { SidePanel } from '@actjs.on/ng-web-compack/side-panel';
-// import { SidePanel } from 'projects/ng-web-compack/side-panel';
+import { SidePanelAsyncComponent } from '@actjs.on/ng-web-compack/side-panel/async';
+// import { SidePanelAsyncComponent } from 'projects/ng-web-compack/side-panel/async';
 
 
 @Component({
@@ -14,7 +14,7 @@ import { SidePanel } from '@actjs.on/ng-web-compack/side-panel';
 })
 export class AppComponent {
 
-    @ViewChild('asyncSidePanel', { static: false }) asyncSidePanel: SidePanel.AsyncComponent;
+    @ViewChild('asyncSidePanel', { static: false }) asyncSidePanel: SidePanelAsyncComponent;
 
     collectionPromise: Promise<any[]>;
 
@@ -27,6 +27,10 @@ export class AppComponent {
     constructor(
 
     ) {
+        this.asyncSidePanel = {} as SidePanelAsyncComponent;
+
+        this.collection = [];
+        this._accomplish = function() {};
 
         this.loaded = false;
 
@@ -51,7 +55,7 @@ export class AppComponent {
             this.asyncSidePanel.toggle();
         } else {
             this.loaded = true;
-            this.asyncSidePanel.toggleBy(mouseEvent.target);
+            this.asyncSidePanel.toggleBy(mouseEvent.target as EventTarget);
         }
 
     }

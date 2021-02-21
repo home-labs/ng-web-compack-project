@@ -3,7 +3,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { AsyncComponent } from './component';
+import { SidePanelAsyncComponent } from './component';
 
 
 @NgModule({
@@ -11,10 +11,10 @@ import { AsyncComponent } from './component';
         CommonModule
     ],
     declarations: [
-        AsyncComponent
+        SidePanelAsyncComponent
     ],
     exports: [
-        AsyncComponent
+        SidePanelAsyncComponent
     ]
 })
-export class AsyncModule { }
+export class SidePanelAsyncModule { }

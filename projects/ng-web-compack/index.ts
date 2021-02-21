@@ -1,1 +1,1 @@
-export * from './ng-web-compack';
+export * from './public-api';

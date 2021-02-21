@@ -1,1 +1,1 @@
-export * from './async';
+export * from './public-api';
