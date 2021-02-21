@@ -1,1 +1,1 @@
-export * from './async/index';
+export * from './src/index';

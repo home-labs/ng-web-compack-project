@@ -3,14 +3,18 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 
-import { SidePanelAsyncModule } from '@actjs.on/ng-web-compack/side-panel/async';
-// import { SidePanelAsyncModule } from 'projects/ng-web-compack/side-panel/async';
+// import { SidePanel } from '@actjs.on/ng-web-compack/side-panel';
+import { SidePanelAsyncModule } from '@actjs.on/ng-web-compack/side-panel';
+
+// import { SidePanel } from 'projects/ng-web-compack/side-panel';
+// import { SidePanelAsyncModule } from 'projects/ng-web-compack/side-panel';
 
 
 @NgModule({
     imports: [
         BrowserModule
         , SidePanelAsyncModule
+        // , SidePanel.SidePanelAsyncModule
     ],
     declarations: [
         AppComponent
