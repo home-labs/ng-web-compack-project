@@ -18,7 +18,8 @@ import { SidePanel } from '@actjs.on/ng-web-compack/side-panel';
 export class AppComponent {
 
     // @ViewChild('asyncSidePanel', { static: false }) asyncSidePanel: AsyncComponent;
-    @ViewChild('asyncSidePanel', { static: false }) asyncSidePanel: SidePanel.AsyncComponent;
+    @ViewChild('asyncSidePanel', { static: false })
+    asyncSidePanel!: SidePanel.AsyncComponent;
 
     collectionPromise: Promise<any[]>;
 
@@ -31,8 +32,6 @@ export class AppComponent {
     constructor(
 
     ) {
-        // this.asyncSidePanel = {} as AsyncComponent;
-        this.asyncSidePanel = {} as SidePanel.AsyncComponent;
 
         this.collection = [];
         this._accomplish = function() {};

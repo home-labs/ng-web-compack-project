@@ -20,11 +20,12 @@ export class AsyncComponent implements OnInit {
 
     private recordReleaseTriggerElement: boolean;
 
-    private _container: HTMLDivElement;
+    private _container!: HTMLDivElement;
 
-    private inlineStyle: CSSStyleDeclaration;
+    private inlineStyle!: CSSStyleDeclaration;
 
-    private _containerElementRef: ElementRef<HTMLDivElement>;
+    private _containerElementRef!: ElementRef<HTMLDivElement>;
+
     @ViewChild('container', { static: true })
     private set container(value: any) {
         if (value) {
@@ -58,10 +59,6 @@ export class AsyncComponent implements OnInit {
         this.retracted = true;
         this.triggerElements = [];
         this.recordReleaseTriggerElement = false;
-
-        this._container = {} as HTMLDivElement;
-        this.inlineStyle = {} as CSSStyleDeclaration;
-        this._containerElementRef = {} as ElementRef<HTMLDivElement>;
     }
 
     ngOnInit() {
