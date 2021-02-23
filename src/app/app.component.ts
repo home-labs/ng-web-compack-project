@@ -59,7 +59,7 @@ export class AppComponent {
             this.asyncSidePanel.toggle();
         } else {
             this.loaded = true;
-            this.asyncSidePanel.toggleBy(mouseEvent.target as EventTarget);
+            this.asyncSidePanel.toggleBy((mouseEvent.target)!);
         }
 
     }

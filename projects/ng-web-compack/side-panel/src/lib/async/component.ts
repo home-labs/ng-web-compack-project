@@ -41,13 +41,13 @@ export class AsyncComponent implements OnInit {
     onHostClick(event: Event) {
 
         if (this.recordReleaseTriggerElement && !this.retracted) {
-            this.recordTriggerElement(event.target as EventTarget);
+            this.recordTriggerElement((event.target)!);
             this.recordReleaseTriggerElement = false;
         }
 
         if (
             !this._containerElementRef.nativeElement.contains(event.target as Node)
-            && !this.triggerElements.includes(event.target as EventTarget)
+            && !this.triggerElements.includes((event.target)!)
             && !this.retracted
         ) {
             this.recall();
