@@ -1,1 +1,1 @@
-export * from './ng-matcheck';
+export * from './matcheck';
