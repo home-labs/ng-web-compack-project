@@ -25,7 +25,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, '../../coverage/ng-web-compack'),
+      dir: require('path').join(__dirname, '../../coverage/matcheck'),
       subdir: '.',
       reports: [
         { type: 'html' },

@@ -1,0 +1,6 @@
+{
+  "peerDependencies": {
+    "@angular/material": "^11.2.2",
+    "@actjs.on/ng-cool-filter-pipe": "1.0.0-rc.2"
+  }
+}

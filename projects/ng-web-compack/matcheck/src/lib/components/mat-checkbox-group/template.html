@@ -1,0 +1,11 @@
+<mat-checkbox
+  #matCheckbox
+  *ngFor="let object of objectCollection | filterBy: filterTerm:propertyLabel"
+  [value]="renderValueOf(object)"
+  [disabled]="isDisabled(matCheckbox)"
+  [checked]="isChecked(matCheckbox)"
+  [ngClass]="ngClass"
+  (change)="resolveFormValue($event)"
+>
+  {{ renderLabelOf(object) }}
+</mat-checkbox>

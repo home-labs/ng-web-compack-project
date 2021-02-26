@@ -1,0 +1,18 @@
+<button
+  (click)="onClick($event)"
+>Click me</button>
+
+<lib-async-side-panel
+  #asyncSidePanel
+>
+
+  <div class="content">
+    <!-- <ul *ngIf="collectionPromise"> -->
+    <ul *ngIf="collectionPromise | async">
+      <li>
+        Async example works!
+      </li>
+    </ul>
+  </div>
+
+</lib-async-side-panel>

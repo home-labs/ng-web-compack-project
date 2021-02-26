@@ -1,0 +1,5 @@
+{
+  "peerDependencies": {
+    "@actjs.on/mathrix-ts": "1.0.0-rc.3"
+  }
+}
