@@ -11,6 +11,7 @@
   },
   "private": true,
   "dependencies": {
+    "@actjs.on/ng-cool-filter-pipe": "^1.0.0-rc.2",
     "@angular/animations": "~11.0.6",
     "@angular/common": "~11.0.6",
     "@angular/compiler": "~11.0.6",
