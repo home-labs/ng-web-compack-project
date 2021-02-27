@@ -8,7 +8,7 @@ import {
 
 
 @Component({
-    selector: 'lib-async-side-panel',
+    selector: 'lib-side-panel-async',
     templateUrl: './template.html',
     styleUrls: ['./style.styl']
 })

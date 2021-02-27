@@ -20,4 +20,4 @@ import { MatcheckComponent } from './component';
     ],
     providers: []
 })
-export class MatcheckModule { }
+export class MatcheckExampleModule { }

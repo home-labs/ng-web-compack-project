@@ -7,6 +7,8 @@ import { BrowserModule } from '@angular/platform-browser';
 // import { SidePanelAsyncModule } from '@actjs.on/ng-web-compack/side-panel';
 import { SidePanelAsyncModule } from 'projects/ng-web-compack/side-panel/side-panel';
 
+import { SidePanelAsyncComponent } from './component';
+
 
 @NgModule({
     imports: [

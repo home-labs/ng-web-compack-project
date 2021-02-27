@@ -3,16 +3,16 @@ import {
     ViewChild
 } from '@angular/core';
 
-import { SidePanel } from '@actjs.on/ng-web-compack/side-panel';
-// import { SidePanel } from 'projects/ng-web-compack/side-panel/side-panel';
+// import { SidePanel } from '@actjs.on/ng-web-compack/side-panel';
+import { SidePanel } from 'projects/ng-web-compack/side-panel/side-panel';
 
 
 @Component({
-    selector: 'app-async-side-panel',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.styl']
+    selector: 'app-side-panel-async',
+    templateUrl: './template.html',
+    styleUrls: ['./style.styl']
 })
-export class AsyncSidePanelComponent {
+export class SidePanelAsyncComponent {
 
     // @ViewChild('asyncSidePanel', { static: false }) asyncSidePanel: AsyncComponent;
     @ViewChild('asyncSidePanel', { static: false })
