@@ -1,1 +1,3 @@
-export * from './matcheck';
+export * from './lib/components/index';
+
+export * from './lib/module';
