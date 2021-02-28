@@ -12,11 +12,11 @@ import { SidePanel } from 'projects/ng-web-compack/side-panel/side-panel';
     templateUrl: './template.html',
     styleUrls: ['./style.styl']
 })
-export class SidePanelAsyncComponent {
+export class AsyncSidePanelExampleComponent {
 
-    // @ViewChild('asyncSidePanel', { static: false }) asyncSidePanel: AsyncComponent;
+    // @ViewChild('asyncSidePanel', { static: false }) asyncSidePanel: SidePanelComponent;
     @ViewChild('asyncSidePanel', { static: false })
-    asyncSidePanel!: SidePanel.AsyncComponent;
+    asyncSidePanel!: SidePanel.SidePanelComponent;
 
     collectionPromise: Promise<any[]>;
 

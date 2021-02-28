@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-// import { NgMatcheckModule } from '@actjs.on/ng-web-compack/matcheck';
-import { NgMatcheckModule } from 'projects/ng-web-compack/matcheck/public-api';
+// import { MatcheckModule } from '@actjs.on/ng-web-compack/matcheck';
+import { MatcheckModule } from 'projects/ng-web-compack/matcheck/public-api';
 
 import { MatcheckComponent } from './component';
 
@@ -10,13 +10,14 @@ import { MatcheckComponent } from './component';
 @NgModule({
     imports: [
         BrowserModule
-        , NgMatcheckModule
+        , MatcheckModule
     ],
     declarations: [
         MatcheckComponent
     ],
     exports: [
         MatcheckComponent
+        , MatcheckModule
     ],
     providers: []
 })

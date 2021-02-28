@@ -33,7 +33,7 @@ import { MatCheckboxGroupComponent } from './components/index';
         MatCheckboxGroupComponent
     ]
 })
-export class NgMatcheckModule {
+export class MatcheckModule {
 
     // static forRoot(): ModuleWithProviders {
     //     return {

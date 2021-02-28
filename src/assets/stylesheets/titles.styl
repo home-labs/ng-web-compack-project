@@ -1,0 +1,15 @@
+@import './mixins.styl'
+
+
+*
+  &[title]
+    +title
+
+  &:hover
+    &[title]
+      &:after
+        top 130%
+        left 65%
+
+        padding 4px 9px
+        border-radius 3px

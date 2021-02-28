@@ -5,20 +5,23 @@ import { BrowserModule } from '@angular/platform-browser';
 // import { SidePanel } from 'projects/ng-web-compack/side-panel';
 
 // import { SidePanelAsyncModule } from '@actjs.on/ng-web-compack/side-panel';
-import { SidePanelAsyncModule } from 'projects/ng-web-compack/side-panel/side-panel';
+import { SidePanelModule } from 'projects/ng-web-compack/side-panel/side-panel';
 
-import { SidePanelAsyncComponent } from './component';
+import { AsyncSidePanelExampleComponent } from './component';
 
 
 @NgModule({
     imports: [
         BrowserModule
-        , SidePanelAsyncModule
-        // , SidePanel.SidePanelAsyncModule
+        , SidePanelModule
+        // , SidePanel.SidePanelModule
     ],
     declarations: [
-
+        AsyncSidePanelExampleComponent
+    ],
+    exports:[
+        AsyncSidePanelExampleComponent
     ],
     providers: []
 })
-export class SidePanelAsyncExampleModule { }
+export class AsyncSidePanelExampleModule { }

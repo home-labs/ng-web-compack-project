@@ -1,0 +1,46 @@
+table
+  border-collapse collapse
+  margin auto !important
+  width 100%
+
+  thead
+    text-align center
+
+    tr
+      th
+
+  tbody
+    overflow auto
+
+    tr
+      &:hover
+
+      td
+        text-align center
+
+        &:first-of-type
+          text-align initial
+
+  thead, tbody
+
+    tr
+      white-space: nowrap
+      border-bottom 1px solid
+
+      &:last-of-type
+        border-bottom initial
+
+      td
+        text-overflow: ellipsis
+        overflow-x: hidden
+
+  &.scrollable-body
+
+    tbody
+      display block
+
+    thead, tbody
+      tr
+        width 100%
+        table-layout fixed
+        display inline-table

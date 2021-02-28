@@ -8,11 +8,11 @@ import {
 
 
 @Component({
-    selector: 'lib-side-panel-async',
+    selector: 'lib-side-panel',
     templateUrl: './template.html',
     styleUrls: ['./style.styl']
 })
-export class AsyncComponent implements OnInit {
+export class SidePanelComponent implements OnInit {
 
     private triggerElements: EventTarget[];
 

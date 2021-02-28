@@ -1,1 +1,1 @@
-export * from './lib/async/component';
+export * from './lib/component';
