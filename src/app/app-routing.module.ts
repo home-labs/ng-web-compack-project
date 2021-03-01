@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-// import { MatcheckComponent } from './matcheck/component';
-
 import { AsyncSidePanelExampleComponent } from './components/async-side-panel/component';
+import { MatcheckComponent } from './components/matcheck/component';
 
 
 const routes: Routes = [
@@ -23,6 +22,10 @@ const routes: Routes = [
                     {
                         path: 'async-side-panel'
                         , component: AsyncSidePanelExampleComponent
+                    },
+                    {
+                        path: 'matcheck'
+                        , component: MatcheckComponent
                     }
                 ]
             }
