@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AsyncSidePanelExampleModule  } from './side-panel/module';
+import { AsyncSidePanelExampleModule  } from './components/async-side-panel/module';
 
 import { AppComponent } from './app.component';
 import { HorizontalMenuComponent } from './core/components/index';

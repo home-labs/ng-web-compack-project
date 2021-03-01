@@ -8,7 +8,7 @@ import { SidePanel } from 'projects/ng-web-compack/side-panel/side-panel';
 
 
 @Component({
-    selector: 'app-side-panel-async',
+    selector: 'app-async-side-panel',
     templateUrl: './template.html',
     styleUrls: ['./style.styl']
 })

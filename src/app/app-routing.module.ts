@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 // import { MatcheckComponent } from './matcheck/component';
 
-import { AsyncSidePanelExampleComponent } from './side-panel/component';
+import { AsyncSidePanelExampleComponent } from './components/async-side-panel/component';
 
 
 const routes: Routes = [
