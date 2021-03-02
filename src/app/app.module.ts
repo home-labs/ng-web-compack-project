@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -11,7 +12,8 @@ import { HorizontalMenuComponent } from './core/components/index';
 
 @NgModule({
     imports: [
-        BrowserModule
+        CommonModule
+        , BrowserModule
         , AppRoutingModule
         , AsyncSidePanelExampleModule
     ],

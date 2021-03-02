@@ -2,11 +2,10 @@ import {
     NgModule
     // , ModuleWithProviders
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
 import {
     FormsModule
     , ReactiveFormsModule
-
 } from '@angular/forms';
 import {
     MatCheckboxModule
@@ -20,7 +19,7 @@ import { MatCheckboxGroupComponent } from './components/index';
 
 @NgModule({
     imports: [
-        CommonModule
+        BrowserModule
         , FormsModule
         , ReactiveFormsModule
         , MatCheckboxModule
@@ -30,14 +29,18 @@ import { MatCheckboxGroupComponent } from './components/index';
         MatCheckboxGroupComponent
     ],
     exports: [
-        MatCheckboxGroupComponent
+        BrowserModule
+        , MatCheckboxGroupComponent
+        , MatCheckboxModule
+        , FormsModule
+        , ReactiveFormsModule
     ]
 })
 export class MatcheckModule {
 
-    // static forRoot(): ModuleWithProviders {
+    // static forRoot(): ModuleWithProviders<MatcheckModule> {
     //     return {
-    //         ngModule: NgMatcheckModule,
+    //         ngModule: MatcheckModule,
     //         providers: [
 
     //         ]

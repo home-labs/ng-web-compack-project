@@ -9,8 +9,8 @@ import {
 } from '@angular/core';
 import {
     FormControl
-    , FormGroup
     // , NgForm
+    , FormGroup
     , Validators
 } from '@angular/forms';
 import {
@@ -26,26 +26,30 @@ import {
         './style.styl'
     ]
 })
-export class MatCheckboxGroupComponent<T> implements OnInit, AfterContentChecked, AfterViewChecked {
+export class MatCheckboxGroupComponent<T>
+    implements
+        OnInit,
+        AfterContentChecked,
+        AfterViewChecked {
 
     @Input() parent!: ThisType<T>;
 
-    // @Input() form: FormGroup | NgForm;
-    @Input() form!: FormGroup;
-
-    @Input() ngClass: any;
+    @Input() filterTerm!: string;
 
     @Input() objectCollection!: object[];
 
     @Input() property!: string;
 
-    @Input() formProperty!: string;
-
     @Input() propertyLabel!: string;
 
-    @Input() filterTerm: string;
+    // @Input() form: FormGroup | NgForm;
+    @Input() form!: FormGroup;
+
+    @Input() formProperty!: string;
 
     @Input() callbackDeclarationOfDisabledProperty!: ((matCheckbox: MatCheckbox) => boolean);
+
+    @Input() ngClass!: any;
 
     private primaryKeyValues: string[];
 
@@ -53,7 +57,6 @@ export class MatCheckboxGroupComponent<T> implements OnInit, AfterContentChecked
         private viewContainerRef: ViewContainerRef,
         private changeDetectorRef: ChangeDetectorRef
     ) {
-        this.filterTerm = '';
         this.primaryKeyValues = [];
     }
 

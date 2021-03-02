@@ -1,7 +1,23 @@
-<!-- <lib-mat-checkbox-group
+<input
+  type="text"
+  [(ngModel)]="filterText"
+  [ngModelOptions]="{standalone: true}"
+/>
+
+<lib-mat-checkbox-group
   [parent]="this"
->
+  [filterTerm]="filterText"
+  [objectCollection]="objectCollection"
+  [property]="'id'"
+  [propertyLabel]="'name'"
+  [form]="form"
+  [formProperty]="'ids'"
+></lib-mat-checkbox-group>
+  <!-- [callbackDeclarationOfDisabledProperty]="" -->
 
-</lib-mat-checkbox-group> -->
 
-It Works!
+<button
+
+>Show Form Data</button>
+
+<!-- It Works! -->

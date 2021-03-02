@@ -9,15 +9,17 @@ import { MatcheckComponent } from './component';
 
 @NgModule({
     imports: [
-        BrowserModule
-        , MatcheckModule
+        MatcheckModule
+        // MatcheckModule.forRoot()
+        , BrowserModule
     ],
     declarations: [
         MatcheckComponent
     ],
     exports: [
-        MatcheckComponent
-        , MatcheckModule
+        MatcheckModule
+        , MatcheckComponent
+        , BrowserModule
     ],
     providers: []
 })
