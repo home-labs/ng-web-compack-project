@@ -10,23 +10,23 @@ import { FormBuilder, FormGroup } from '@angular/forms';
     templateUrl: './template.html',
     styleUrls: ['./style.styl']
 })
-export class MatcheckComponent implements OnInit {
+export class MatcheckComponent {
 
     objectCollection: object[];
 
     filterText!: string;
 
-    form!: FormGroup;
+    form: FormGroup;
 
     constructor(
         private formBuilder: FormBuilder
     ) {
-        // this.form = this.formBuilder.group(
-        //     {
-        //         ids: [null],
-        //         name: [null],
-        //     }
-        // );
+        this.form = this.formBuilder.group(
+            {
+                ids: [null],
+                name: [null],
+            }
+        );
 
         this.objectCollection = [
             {
@@ -42,15 +42,6 @@ export class MatcheckComponent implements OnInit {
                 name: 'Object Name 3'
             }
         ]
-    }
-
-    ngOnInit() {
-        this.form = this.formBuilder.group(
-            {
-                ids: [null],
-                name: [null],
-            }
-        );
     }
 
     showFormDataInLog() {
