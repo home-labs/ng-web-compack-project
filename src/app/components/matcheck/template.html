@@ -6,18 +6,15 @@
 
 <lib-mat-checkbox-group
   [parent]="this"
-  [filterTerm]="filterText"
   [objectCollection]="objectCollection"
-  [property]="'id'"
+  [filterTerm]="filterText"
   [propertyLabel]="'name'"
+  [property]="'id'"
   [form]="form"
   [formProperty]="'ids'"
+  [callbackDeclarationOfDisabledProperty]="callbackDeclarationOfDisabledProperty"
 ></lib-mat-checkbox-group>
-  <!-- [callbackDeclarationOfDisabledProperty]="" -->
-
 
 <button
-
+  (click)="showFormDataInLog()"
 >Show Form Data</button>
-
-<!-- It Works! -->

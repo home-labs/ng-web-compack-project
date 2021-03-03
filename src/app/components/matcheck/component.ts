@@ -44,8 +44,12 @@ export class MatcheckComponent {
         ]
     }
 
+    callbackDeclarationOfDisabledProperty(): boolean {
+        return this.form.value.ids.length === 2;
+    }
+
     showFormDataInLog() {
-        console.log(this.form.value);
+        console.log(this.form.value.ids);
     }
 
 }
