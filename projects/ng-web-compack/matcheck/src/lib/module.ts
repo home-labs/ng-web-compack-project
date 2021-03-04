@@ -36,15 +36,4 @@ import { MatCheckboxGroupComponent } from './components/index';
         , ReactiveFormsModule
     ]
 })
-export class MatcheckModule {
-
-    // static forRoot(): ModuleWithProviders<MatcheckModule> {
-    //     return {
-    //         ngModule: MatcheckModule,
-    //         providers: [
-
-    //         ]
-    //     };
-    // }
-
-}
+export class MatcheckModule { }
