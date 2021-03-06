@@ -1,11 +1,11 @@
-@mixin linear-gradient($initial-color, $final-color, $percentage: null)
-  @if ($percentage)
-    background: linear-gradient(to bottom, $initial-color $percentage, $final-color 100%)
-  @else
-    background: linear-gradient(to bottom, $initial-color, $final-color)
+linear-gradient-to-bottom(initial-color, final-color, percentage = null)
+  if (percentage)
+    background: linear-gradient(to bottom, initial-color percentage, final-color 100%)
+  else
+    background: linear-gradient(to bottom, initial-color, final-color)
 
 
-@mixin title
+title()
   &[title]
     &:after
       position: absolute
@@ -20,47 +20,32 @@
         display: block !important
 
 
-@mixin base64-icon($hash)
-  background: url("data:image/svg+xml;utf8;base64," + $hash) no-repeat
+base64-icon(hash)
+  background: url("data:image/svg+xml;utf8;base64," + hash) no-repeat
 
 
-@mixin shadow($y: 0px, $x: 0px, $suavity: 7px, $size: -1px, $color: black, $style: inital)
-  @if $style == inset
-    box-shadow: $x $y $suavity $size $color $style
-  @else
-    box-shadow: $x $y $suavity $size $color
+shadow(y = 0px, x = 0px, suavity = 7px, size = -1px, $color = black, $style = inital)
+  if $style == inset
+    box-shadow: x y suavity size $color $style
+  else
+    box-shadow: x y suavity size $color
 
 
-@mixin text-shadow($color)
+text-shadow($color)
   text-shadow: 0px 1px 1px $color
 
 
-@mixin link-button
-  +inline
+link-button()
+  inline()
   text-align: center
   text-decoration: none
 
 
-@mixin stretch-to-footer
+stretch-to-footer()
   position: absolute
   bottom: 0
 
-@mixin sprite-icon-position($x, $y)
-  background:
-    position: $x $y
 
-
-@mixin sprite-icon($image, $width, $height)
-  display: inline
-  vertical-align: middle
-  width: $width
-  height: $height
-
-  background:
-    image: asset-url($image, image)
-    repeat: no-repeat
-
-
-@mixin text-overflow
+text-overflow()
   white-space: nowrap
   overflow-x: hidden
