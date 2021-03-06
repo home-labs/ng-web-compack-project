@@ -1,51 +1,51 @@
 linear-gradient-to-bottom(initial-color, final-color, percentage = null)
   if (percentage)
-    background: linear-gradient(to bottom, initial-color percentage, final-color 100%)
+    background linear-gradient(to bottom, initial-color percentage, final-color 100%)
   else
-    background: linear-gradient(to bottom, initial-color, final-color)
+    background linear-gradient(to bottom, initial-color, final-color)
 
 
 title()
   &[title]
     &:after
-      position: absolute
-      z-index: 1
-      white-space: nowrap
-      display: none
-      text-transform: initial
+      position absolute
+      z-index 1
+      white-space nowrap
+      display none
+      text-transform initial
 
   &:hover
     &[title]
       &:after
-        display: block !important
+        display block !important
 
 
 base64-icon(hash)
-  background: url("data:image/svg+xml;utf8;base64," + hash) no-repeat
+  background url("data:image/svg+xml;utf8;base64," + hash) no-repeat
 
 
 shadow(y = 0px, x = 0px, suavity = 7px, size = -1px, $color = black, $style = inital)
   if $style == inset
-    box-shadow: x y suavity size $color $style
+    box-shadow x y suavity size $color $style
   else
-    box-shadow: x y suavity size $color
+    box-shadow x y suavity size $color
 
 
 text-shadow($color)
-  text-shadow: 0px 1px 1px $color
+  text-shadow 0px 1px 1px $color
 
 
 link-button()
   inline()
-  text-align: center
-  text-decoration: none
+  text-align center
+  text-decoration none
 
 
 stretch-to-footer()
-  position: absolute
-  bottom: 0
+  position absolute
+  bottom 0
 
 
 text-overflow()
-  white-space: nowrap
-  overflow-x: hidden
+  white-space nowrap
+  overflow-x hidden
