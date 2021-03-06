@@ -13,25 +13,19 @@ const routes: Routes = [
         , pathMatch: 'full'
     }
     , {
-        path: ''
+        path: 'examples'
         , children: [
+            // objetos literais vazios ({}) gerarão erro
             {
-                path: 'examples'
-                , children: [
-                    // configurações vazias {} gerarão erro
-                    {
-                        path: 'async-side-panel'
-                        , component: AsyncSidePanelExampleComponent
-                    },
-                    {
-                        path: 'matcheck'
-                        , component: MatcheckComponent
-                    }
-                ]
+                path: 'async-side-panel'
+                , component: AsyncSidePanelExampleComponent
+            },
+            {
+                path: 'matcheck'
+                , component: MatcheckComponent
             }
         ]
     }
-
 ];
 
 
