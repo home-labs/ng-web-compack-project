@@ -10,7 +10,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
     templateUrl: './template.html',
     styleUrls: ['./style.styl']
 })
-export class MatcheckComponent {
+export class MatcheckExampleComponent {
 
     objectCollection: object[];
 
