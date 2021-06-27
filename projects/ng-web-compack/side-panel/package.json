@@ -1,5 +1,9 @@
 {
   "peerDependencies": {
-    "@actjs.on/mathrix-ts": "1.0.0-rc.3"
+    "@angular/common": "^12.0.1",
+    "@angular/core": "^12.0.1"
+  },
+  "dependencies": {
+    "tslib": "^2.1.0"
   }
 }

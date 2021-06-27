@@ -7,7 +7,7 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "styl"
+          "style": "less"
         },
         "@schematics/angular:application": {
           "strict": true
@@ -31,7 +31,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.styl"
+              "src/styles.less"
             ],
             "scripts": []
           },
@@ -94,7 +94,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.styl"
+              "src/styles.less"
             ],
             "scripts": []
           }
@@ -129,7 +129,7 @@
     "ng-web-compack": {
       "projectType": "library",
       "root": "projects/ng-web-compack",
-      "sourceRoot": "projects/ng-web-compack",
+      "sourceRoot": "projects/ng-web-compack/src",
       "prefix": "lib",
       "architect": {
         "build": {

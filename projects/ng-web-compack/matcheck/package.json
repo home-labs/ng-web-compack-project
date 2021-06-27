@@ -1,6 +1,12 @@
 {
   "peerDependencies": {
-    "@angular/material": "^11.2.2",
+    "@angular/common": "^12.0.1",
+    "@angular/core": "^12.0.1"
+  },
+  "dependencies": {
+    "tslib": "^2.1.0",
+    "@angular/material": "~12.1.0",
+    "@angular/cdk": "~12.1.0",
     "@actjs.on/ng-cool-filter-pipe": "1.0.0-rc.2"
   }
 }
