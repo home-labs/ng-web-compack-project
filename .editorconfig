@@ -6,17 +6,16 @@ charset = utf-8
 indent_style = space
 insert_final_newline = true
 trim_trailing_whitespace = true
-max_line_length = 80
 
-[*.{ts}]
+[*.ts]
 quote_type = single
 
 [*.{ts,md}]
 indent_size = 4
 
-[*.{js,json,html,styl}]
+[*.{js,json,html,less}]
 indent_size = 2
 
-[*.{md,html}]
+[*.md]
 max_line_length = off
 trim_trailing_whitespace = false
