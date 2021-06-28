@@ -14,7 +14,6 @@ import { SidePanel } from 'projects/ng-web-compack/side-panel/src/public-api';
 })
 export class AsyncSidePanelExampleComponent {
 
-    // @ViewChild('asyncSidePanel', { static: false }) asyncSidePanel: SidePanelComponent;
     @ViewChild('asyncSidePanel', { static: false })
     asyncSidePanel!: SidePanel.SidePanelComponent;
 
@@ -50,16 +49,8 @@ export class AsyncSidePanelExampleComponent {
         );
     }
 
-    onClick(mouseEvent: MouseEvent) {
-
-        if (this.loaded) {
-            this.asyncSidePanel.toggle();
-        } else {
-            this.loaded = true;
-            // this.asyncSidePanel.toggleBy((mouseEvent.target)!);
-            this.asyncSidePanel.toggleBy(mouseEvent);
-        }
-
+    onClick() {
+        this.asyncSidePanel.toggle();
     }
 
 }
