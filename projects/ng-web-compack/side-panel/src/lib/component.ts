@@ -3,7 +3,8 @@ import {
     , ViewChild
     , HostListener
     , ElementRef
-    , OnInit
+    , Input
+    , AfterContentChecked
 } from '@angular/core';
 
 
@@ -12,17 +13,22 @@ import {
     templateUrl: './template.html',
     styleUrls: ['./style.styl']
 })
-export class SidePanelComponent implements OnInit {
+export class SidePanelComponent implements AfterContentChecked {
+
+    @Input()
+    private retracted!: boolean;
 
     private triggerElements: EventTarget[];
 
-    private retracted: boolean;
-
     private isAReleaseTriggerElement: boolean;
 
-    private _container!: HTMLDivElement;
+    private computedWidth!: string;
+
+    private widthWasComputed: boolean;
 
     private inlineStyle!: CSSStyleDeclaration;
+
+    private _container!: HTMLDivElement;
 
     private _containerElementRef!: ElementRef<HTMLDivElement>;
 
@@ -33,10 +39,6 @@ export class SidePanelComponent implements OnInit {
             this._container = this._containerElementRef.nativeElement;
 
             this.inlineStyle = this._container.style;
-
-            if (this.retracted) {
-                this.inlineStyle.width = '0px';
-            }
         }
     }
 
@@ -60,13 +62,32 @@ export class SidePanelComponent implements OnInit {
     }
 
     constructor() {
-        this.retracted = true;
-        // this.retracted = false;
+        this.widthWasComputed = false;
+
+        // só tem de cortar o efeito deslizante já início, neste caso
+        this.retracted = this.retracted || false;
+        // this.retracted = this.retracted || true;
         this.triggerElements = [];
         this.isAReleaseTriggerElement = false;
     }
 
-    ngOnInit() {
+    ngAfterContentChecked() {
+
+        if ((!this.computedWidth || this.computedWidth === '0px') && !this.widthWasComputed) {
+
+            this.setComputedWith();
+
+            if (this.computedWidth !== '0px') {
+                this.widthWasComputed = true;
+            }
+
+            if (this.retracted) {
+                this.inlineStyle.width = '0px';
+            } else {
+                this.inlineStyle.width = this.computedWidth;
+            }
+
+        }
 
     }
 
@@ -79,7 +100,8 @@ export class SidePanelComponent implements OnInit {
         }
     }
 
-    private release() {
+    private setComputedWith() {
+
         let containerParent: Node | null;
 
         let containerClone: HTMLElement;
@@ -87,8 +109,6 @@ export class SidePanelComponent implements OnInit {
         let computedStyle: CSSStyleDeclaration;
 
         let inlineStyle: CSSStyleDeclaration;
-
-        let computedWidth: string;
 
         containerClone = this._container.cloneNode(true) as HTMLElement;
         containerParent = this._container.parentElement;
@@ -102,15 +122,17 @@ export class SidePanelComponent implements OnInit {
             containerParent.appendChild(containerClone);
             inlineStyle.width = '';
 
-            computedWidth = computedStyle.width;
+            this.computedWidth = computedStyle.width;
 
             containerParent.removeChild(containerClone);
         } else {
-            computedWidth = `${window.document.documentElement.offsetWidth}px`;
+            this.computedWidth = `${window.document.documentElement.offsetWidth}px`;
         }
 
-        this.inlineStyle.width = computedWidth;
+    }
 
+    private release() {
+        this.inlineStyle.width = this.computedWidth;
         this.retracted = false;
     }
 
