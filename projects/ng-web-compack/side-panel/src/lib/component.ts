@@ -18,7 +18,7 @@ export class SidePanelComponent implements OnInit {
 
     private retracted: boolean;
 
-    private recordReleaseTriggerElement: boolean;
+    private isAReleaseTriggerElement: boolean;
 
     private _container!: HTMLDivElement;
 
@@ -33,32 +33,37 @@ export class SidePanelComponent implements OnInit {
             this._container = this._containerElementRef.nativeElement;
 
             this.inlineStyle = this._container.style;
-            this.inlineStyle.width = '0px';
+
+            if (this.retracted) {
+                this.inlineStyle.width = '0px';
+            }
         }
     }
 
     @HostListener('document:click', ['$event'])
     onHostClick(event: Event) {
 
-        if (this.recordReleaseTriggerElement && !this.retracted) {
-            this.recordTriggerElement(event);
-            this.recordReleaseTriggerElement = false;
-        }
+        if (!this.retracted) {
 
-        if (
-            !this._containerElementRef.nativeElement.contains(event.target as Node)
-            && !this.triggerElements.includes((event.target)!)
-            && !this.retracted
-        ) {
-            this.recall();
+            if (this.isAReleaseTriggerElement) {
+                this.recordTriggerElement(event);
+            }
+
+            if (!this.triggerElements.includes(event.target!)
+                && !this._containerElementRef.nativeElement.contains(event.target as Node)
+            ) {
+                this.recall();
+            }
+
         }
 
     }
 
     constructor() {
         this.retracted = true;
+        // this.retracted = false;
         this.triggerElements = [];
-        this.recordReleaseTriggerElement = false;
+        this.isAReleaseTriggerElement = false;
     }
 
     ngOnInit() {
@@ -67,18 +72,7 @@ export class SidePanelComponent implements OnInit {
 
     toggle() {
         if (this.retracted) {
-            this.recordReleaseTriggerElement = true;
-            this.release();
-        } else {
-            this.recall();
-        }
-    }
-
-    toggleBy(event: Event) {
-
-        this.recordTriggerElement(event);
-        if (this.retracted) {
-            this.recordReleaseTriggerElement = false;
+            this.isAReleaseTriggerElement = true;
             this.release();
         } else {
             this.recall();
@@ -132,6 +126,8 @@ export class SidePanelComponent implements OnInit {
         if (eventTarget && !this.triggerElements.includes(eventTarget)) {
             this.triggerElements.push(eventTarget);
         }
+
+        this.isAReleaseTriggerElement = false;
     }
 
 }
