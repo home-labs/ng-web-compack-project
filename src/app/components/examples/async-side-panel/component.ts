@@ -56,7 +56,8 @@ export class AsyncSidePanelExampleComponent {
             this.asyncSidePanel.toggle();
         } else {
             this.loaded = true;
-            this.asyncSidePanel.toggleBy((mouseEvent.target)!);
+            // this.asyncSidePanel.toggleBy((mouseEvent.target)!);
+            this.asyncSidePanel.toggleBy(mouseEvent);
         }
 
     }

@@ -39,9 +39,11 @@ export class SidePanelComponent implements OnInit {
 
     @HostListener('document:click', ['$event'])
     onHostClick(event: Event) {
+        console.log('clicked on document')
+        console.log(event.target)
 
         if (this.recordReleaseTriggerElement && !this.retracted) {
-            this.recordTriggerElement((event.target)!);
+            this.recordTriggerElement(event);
             this.recordReleaseTriggerElement = false;
         }
 
@@ -74,8 +76,12 @@ export class SidePanelComponent implements OnInit {
         }
     }
 
-    toggleBy(eventTarget: EventTarget) {
-        this.recordTriggerElement(eventTarget);
+    toggleBy(event: Event) {
+
+        console.log('clicked on side panel handler')
+        console.log(event.target)
+
+        this.recordTriggerElement(event);
         if (this.retracted) {
             this.recordReleaseTriggerElement = false;
             this.release();
@@ -124,7 +130,10 @@ export class SidePanelComponent implements OnInit {
         this.retracted = true;
     }
 
-    private recordTriggerElement(eventTarget: EventTarget) {
+    private recordTriggerElement(event: Event) {
+
+        const eventTarget: EventTarget = event.target!;
+
         if (eventTarget && !this.triggerElements.includes(eventTarget)) {
             this.triggerElements.push(eventTarget);
         }
