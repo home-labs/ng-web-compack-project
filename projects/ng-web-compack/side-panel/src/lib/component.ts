@@ -63,10 +63,7 @@ export class SidePanelComponent implements AfterContentChecked {
 
     constructor() {
         this.widthWasComputed = false;
-
-        // só tem de cortar o efeito deslizante já início, neste caso
-        this.retracted = this.retracted || false;
-        // this.retracted = this.retracted || true;
+        this.retracted = this.retracted || true;
         this.triggerElements = [];
         this.isAReleaseTriggerElement = false;
     }
@@ -111,12 +108,12 @@ export class SidePanelComponent implements AfterContentChecked {
         let inlineStyle: CSSStyleDeclaration;
 
         containerClone = this._container.cloneNode(true) as HTMLElement;
-        containerParent = this._container.parentElement;
-
-        computedStyle = window.getComputedStyle(containerClone);
 
         inlineStyle = containerClone.style;
         inlineStyle.visibility = 'hidden';
+
+        containerParent = this._container.parentElement;
+        computedStyle = window.getComputedStyle(containerClone);
 
         if (containerParent) {
             containerParent.appendChild(containerClone);
